@@ -1,0 +1,21 @@
+<nav>
+    <ul class="pager">
+        <li class={{previousButtonClass}}><a href="#" {{action 'previous' on='click'}}>
+            {{#if hasBlock}}
+                {{yield (hash previous=true)}}
+            {{else}}
+                {{previousLabel}}
+            {{/if}}
+        </a></li>
+        {{#if currentPage}}
+            <li class='disabled'><a href='javascript:void(0)'>{{currentPage}}</a></li>
+        {{/if}}
+        <li class={{nextButtonClass}}><a href="#" {{action 'next' on='click'}}>
+            {{#if hasBlock}}
+                {{yield (hash next=true)}}
+            {{else}}
+                {{nextLabel}}
+            {{/if}}
+        </a></li>
+    </ul>
+</nav>

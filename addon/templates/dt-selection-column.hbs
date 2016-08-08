@@ -1,0 +1,5 @@
+{{#if hasBlock}}
+  {{yield (hash change=(action 'change') isRowSelected=(readonly isRowSelected) row=row body=true)}}
+{{else}}
+  {{input type='checkbox' change=(action 'change' value='target.checked') checked=(readonly isRowSelected)}}
+{{/if}}
