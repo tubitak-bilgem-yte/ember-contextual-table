@@ -3,3 +3,10 @@ languages:
 exclude_paths:
 - "tests/*"
 - "docs/*"
+
+engines:
+  duplication:
+    enabled: true
+    checks:
+      Similar code:
+        enabled: false
