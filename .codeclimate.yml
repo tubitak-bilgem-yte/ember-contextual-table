@@ -1,13 +1,5 @@
-engines:
-  duplication:
-    enabled: true
-    config:
-      languages:
-      - javascript
-    checks:
-      Similar code:
-        enabled: false
-
+languages:
+  JavaScript: true
 exclude_paths:
 - "tests/*"
 - "docs/*"
