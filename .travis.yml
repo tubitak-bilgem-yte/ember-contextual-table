@@ -17,10 +17,15 @@ matrix:
   allow_failures:
     - env: EMBER_TRY_SCENARIO=ember-canary
 
+addons:
+    code_climate:
+        repo_token: a0abb57473b09b2720bafaf462b967f49c365444a854f5deece7c62df7048319
+
 before_install:
   - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
   - "npm config set spin false"
   - "npm install -g npm@^2"
+  - "npm install -g codeclimate-test-reporter"
 
 install:
   - npm install -g bower
@@ -30,6 +35,6 @@ install:
 script:
   - ember try $EMBER_TRY_SCENARIO test
 
-addons:
-    code_climate:
-        repo_token: a0abb57473b09b2720bafaf462b967f49c365444a854f5deece7c62df7048319
+after_script:
+  - codeclimate-test-reporter < lcov.dat
+
