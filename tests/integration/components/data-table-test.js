@@ -68,6 +68,29 @@ test('renders table and responds to selections and deselections', function(asser
   assert.equal(selectionCount, 3);
 });
 
+test('renders custom header and footer', function(assert) {
+  this.set('data', players);
+  this.on('selectionChanged', function(){
+    return;
+  });
+
+  this.render(hbs`
+    {{#data-table data=data customHeader=(component 'pager-component') 
+        customFooter=(component 'pager-component') showFooter=true 
+        selectionMode='multi' selectionChanged=(action 'selectionChanged') as |t|}}
+      {{t.selectionColumn}}
+      {{t.column propertyName='name' name='Name'}}
+      {{t.column propertyName='surname' name='Surname'}}
+      {{t.column propertyName='age' name='Age'}}
+      {{t.column propertyName='nationality' name='Nationality'}}
+    {{/data-table}}
+  `);
+
+  assert.equal(this.$("thead").length, 0);
+  assert.equal(this.$("tfoot").length, 0);
+  assert.equal(this.$("li").length, 4);
+});
+
 function assertPlayer(assert,index,player) {
   assert.equal(this.$(`tr:eq(${index})`).find("td:eq(1)").text().trim(), player['name']);
   assert.equal(this.$(`tr:eq(${index})`).find("td:eq(2)").text().trim(), player['surname']);
