@@ -1,30 +1,38 @@
 {{#if showHeader}}
-  <thead>
-    <tr class="contextual-table-header-row">
-      {{yield (hash
-          column=(component 'dt-column-header')
-          selectionColumn=(component (if singleSelection 'dt-column-header' 'dt-selection-column-header') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
-      )}}
-    </tr>
-  </thead>
+    {{#if customHeader}}
+        {{component customHeader isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll')}}
+    {{else}}
+        <thead>
+        <tr class="contextual-table-header-row">
+            {{yield (hash
+            column=(component 'dt-column-header')
+            selectionColumn=(component (if singleSelection 'dt-column-header' 'dt-selection-column-header') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
+            )}}
+        </tr>
+        </thead>
+    {{/if}}
 {{/if}}
 <tbody>
-  {{#each data as |row index|}}
+{{#each data as |row index|}}
     <tr class={{if (array-contains selectedRows row) 'contextual-table-selected-row contextual-table-row' 'contextual-table-row'}} {{action (if (array-contains selectedRows row) 'deselected' 'selected') row on='doubleClick'}}>
-      {{yield (hash
-          column=(component 'dt-column-cell' row=row index=index)
-          selectionColumn=(component 'dt-selection-column' row=row index=index isRowSelected=(array-contains selectedRows row) rowSelected=(action 'selected' row) rowDeselected=(action 'deselected' row))
-      )}}
+        {{yield (hash
+        column=(component 'dt-column-cell' row=row index=index)
+        selectionColumn=(component 'dt-selection-column' row=row index=index isRowSelected=(array-contains selectedRows row) rowSelected=(action 'selected' row) rowDeselected=(action 'deselected' row))
+        )}}
     </tr>
-  {{/each}}
+{{/each}}
 </tbody>
 {{#if showFooter}}
-  <tfoot>
-    <tr class="contextual-table-footer-row">
-      {{yield (hash
-          column=(component 'dt-column-footer')
-          selectionColumn=(component (if singleSelection 'dt-column-footer' 'dt-selection-column-footer') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
-      )}}
-    </tr>
-  </tfoot>
+    {{#if customFooter}}
+        {{component customFooter isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll')}}
+    {{else}}
+        <tfoot>
+        <tr class="contextual-table-footer-row">
+            {{yield (hash
+            column=(component 'dt-column-footer')
+            selectionColumn=(component (if singleSelection 'dt-column-footer' 'dt-selection-column-footer') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
+            )}}
+        </tr>
+        </tfoot>
+    {{/if}}
 {{/if}}
