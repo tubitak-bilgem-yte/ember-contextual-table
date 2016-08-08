@@ -6,7 +6,7 @@
 [![Dependency Status](https://david-dm.org/tubitak-bilgem-yte/ember-contextual-table.svg)](https://david-dm.org/tubitak-bilgem-yte/ember-contextual-table)
 [![devDependency Status](https://david-dm.org/tubitak-bilgem-yte/ember-contextual-table/dev-status.svg)](https://david-dm.org/tubitak-bilgem-yte/ember-contextual-table#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/tubitak-bilgem-yte/ember-contextual-table/badges/gpa.svg)](https://codeclimate.com/github/tubitak-bilgem-yte/ember-contextual-table)
-[![Test Coverage](https://codeclimate.com/github/tubitak-bilgem-yte/ember-contextual-table/badges/coverage.svg)](https://codeclimate.com/github/tubitak-bilgem-yte/ember-contextual-table/coverage)
+
 
 Ember Data Table as a Contextual Component
 
