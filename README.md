@@ -1,4 +1,4 @@
-# Ember-contextual-table
+# ember-contextual-table
 
 [![npm version](https://badge.fury.io/js/ember-contextual-table.svg)](http://badge.fury.io/js/ember-contextual-table)
 [![Build Status](https://travis-ci.org/tubitak-bilgem-yte/ember-contextual-table.svg?branch=master)](https://travis-ci.org/tubitak-bilgem-yte/ember-contextual-table)
@@ -8,7 +8,7 @@
 [![Code Climate](https://codeclimate.com/github/tubitak-bilgem-yte/ember-contextual-table/badges/gpa.svg)](https://codeclimate.com/github/tubitak-bilgem-yte/ember-contextual-table)
 
 
-Ember Data Table as a Contextual Component
+Ember Table as a Contextual Component
 
 Check [addon sites](https://tubitak-bilgem-yte.github.io/ember-contextual-table/) to read more.
 
