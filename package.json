@@ -1,6 +1,6 @@
 {
   "name": "ember-contextual-table",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "Ember Table as a Contextual Component.",
   "directories": {
     "doc": "doc",
