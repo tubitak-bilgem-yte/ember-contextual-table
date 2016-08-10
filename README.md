@@ -12,9 +12,7 @@ Ember Data Table as a Contextual Component
 
 Check [addon sites](https://tubitak-bilgem-yte.github.io/ember-contextual-table/) to read more.
 
-Check [demo pages](https://tubitak-bilgem-yte.github.io/ember-contextual-table/dist/index.html) for capabilities.
-
-See the codes of [demo app](https://github.com/tubitak-bilgem-yte/ember-contextual-table-demo).
+Check [demo pages](https://tubitak-bilgem-yte.github.io/ember-contextual-table/dist/index.html) for capabilities. See the codes of [demo app](https://github.com/tubitak-bilgem-yte/ember-contextual-table-demo).
 
 Check [wiki pages](https://github.com/tubitak-bilgem-yte/ember-contextual-table/wiki) for usage.
 
