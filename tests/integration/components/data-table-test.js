@@ -101,6 +101,45 @@ test('renders custom header and footer', function(assert) {
 });
 
 
+test('clear selectedRows after data has changed', function(assert) {
+  var selectionCount = 0;
+  this.on('selectionChanged', function(selectedRows){
+    selectionCount=selectedRows.length;
+  });
+  this.set('data', players);
+
+  this.render(hbs`
+    {{#data-table data=data showFooter=true selectionMode='multi' selectionChanged=(action 'selectionChanged') as |t|}}
+      {{t.selectionColumn}}
+      {{t.column propertyName='name' name='Name'}}
+      {{t.column propertyName='surname' name='Surname'}}
+      {{t.column propertyName='age' name='Age'}}
+      {{t.column propertyName='nationality' name='Nationality'}}
+    {{/data-table}}
+  `);
+
+  assert.equal(selectionCount, 0);
+
+  this.$("input[type='checkbox']:eq(3)").prop('checked', true);
+  this.$("input[type='checkbox']:eq(3)").change();
+  assert.equal(selectionCount, 1);
+
+  this.$("input[type='checkbox']:eq(2)").prop('checked', true);
+  this.$("input[type='checkbox']:eq(2)").change();
+  assert.equal(selectionCount, 2);
+
+  let newData = Ember.A();
+  newData.pushObjects(players);
+  this.set('data', newData);
+  assert.notOk(this.$("input[type='checkbox']:eq(0)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(1)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(2)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(3)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(4)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'));
+});
+
+
 test('selectedRows are managed from user of data-table', function(assert) {
   var parentSelectedRows = [players[0], players[2]];
   var resultOfSelection = [];
