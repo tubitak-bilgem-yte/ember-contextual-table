@@ -16,8 +16,8 @@
 {{#each data as |row index|}}
     <tr class={{if (array-contains selectedRows row) 'contextual-table-selected-row contextual-table-row' 'contextual-table-row'}} {{action (if (array-contains selectedRows row) 'deselected' 'selected') row on='doubleClick'}}>
         {{yield (hash
-        column=(component 'dt-column-cell' row=row index=index)
-        selectionColumn=(component 'dt-selection-column' row=row index=index isRowSelected=(array-contains selectedRows row) rowSelected=(action 'selected' row) rowDeselected=(action 'deselected' row))
+        column=(component 'dt-column-cell' row=row rowIndex=index)
+        selectionColumn=(component 'dt-selection-column' row=row rowIndex=index isRowSelected=(array-contains selectedRows row) rowSelected=(action 'selected' row) rowDeselected=(action 'deselected' row))
         )}}
     </tr>
 {{/each}}

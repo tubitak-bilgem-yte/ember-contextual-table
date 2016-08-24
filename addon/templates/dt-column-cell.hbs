@@ -1,5 +1,5 @@
 {{#if hasBlock}}
-  {{yield (hash row=row index=index body=true)}}
+  {{yield (hash row=row rowIndex=rowIndex body=true)}}
 {{else}}
   {{get row propertyName}}
 {{/if}}

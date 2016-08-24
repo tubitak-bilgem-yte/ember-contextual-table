@@ -219,3 +219,22 @@ test('selectedRows are managed from user of data-table', function(assert) {
   assert.notOk(this.$("input[type='checkbox']:eq(4)").prop('checked'));
   assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'));
 });
+
+
+test('column yield values', function(assert) {
+  this.set('data', [sneijder]);
+
+  this.render(hbs`
+    {{#data-table data=data showFooter=true selectionMode='multi' as |t|}}
+      {{#t.selectionColumn as |col|}}
+        {{col.rowIndex}}-selection-{{col.isRowSelected}}-{{col.body}}
+      {{/t.selectionColumn}}
+      {{#t.column propertyName='name' name='Name' as |col|}}
+         {{col.row.surname}}-{{col.rowIndex}}-{{col.body}}
+      {{/t.column}}
+    {{/data-table}}
+   `);
+
+  assert.equal(this.$('td:eq(0)').text().trim(), '0-selection-false-true');
+  assert.equal(this.$('td:eq(1)').text().trim(), 'Sneijder-0-true');
+});
