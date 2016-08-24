@@ -137,6 +137,21 @@ test('clear selectedRows after data has changed', function(assert) {
   assert.notOk(this.$("input[type='checkbox']:eq(3)").prop('checked'));
   assert.notOk(this.$("input[type='checkbox']:eq(4)").prop('checked'));
   assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'));
+
+  this.$("input[type='checkbox']:eq(3)").prop('checked', true);
+  this.$("input[type='checkbox']:eq(3)").change();
+  assert.equal(selectionCount, 1);
+
+  Ember.run(()=> {
+    newData.clear();
+    newData.pushObjects(players);
+  });
+  assert.notOk(this.$("input[type='checkbox']:eq(0)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(1)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(2)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(3)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(4)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'));
 });
 
 
