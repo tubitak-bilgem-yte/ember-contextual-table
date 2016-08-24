@@ -16,10 +16,18 @@ export default Ember.Component.extend({
   selectionChanged:Ember.K,
   classNames:['contextual-data-table'],
 
-  init(){
-    this._super(...arguments);
-    this.set('selectedRows',Ember.makeArray());
-  },
+  selectedRows:Ember.computed('data.[]',{
+    get(){
+      return Ember.A();
+    },
+    set(key, value){
+      let arr = Ember.A();
+      if(Ember.isArray(value)){
+        arr.pushObjects(value);
+      }
+      return arr;
+    }
+  }),
 
   actions:{
     selected:function(row){
