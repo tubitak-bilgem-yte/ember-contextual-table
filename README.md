@@ -18,7 +18,7 @@ The main idea behind developing yet another ember table is to avoid static colum
 
 ember-contextual-table does not do any magic at component lifecycle hooks to create and/or register to developers' custom column components. Its code is pretty simple and clear; at least we hope so. Feel free to contribute and comment.
 
-## Usage Samples 
+### Usage Samples 
 
 When using ember-contextual-table; you define your table in kind of a declarative way within template you are developing. Consider the simple example given below:
 
@@ -73,7 +73,7 @@ In this example; a selection column along with 4 other columns are declared so a
 
 In this more advanced example above; two selection columns are declared (yes you can define more than one selection column if you want; for whatever logical reason). The first one is a standard one where a checkbox appears inside the cell to indicate selection status of corresponding row; where as the second one is used in block form and a button is used as cell content. The second selection column contains if conditions in its block form usage. This is the way you can customize a column or a selection column. You declare your column's appearance for header, body, and even for footer within corresponding if block; i.e., `{{#if col.header}}...{{/if}}`. A similar customization is performed for 'Age' column in the example above.
 
-## Power of OCP (Paginator Sample)
+### Power of OCP (Paginator Sample)
 
 Paging/pagination is one of many features offered by various table components; hence we also included a few components in order to illustrate how paging can be achieved with ember-contextual-component. Instead of creating a pagination-data-table by extending data-table; (since this is an obvious violation of [favoring composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance)) we again made use of ember's block form components. Consider the example given below:
 
@@ -91,10 +91,9 @@ Paging/pagination is one of many features offered by various table components; h
 
 Data paginator component provided inside this addon can be used to create a paginator and the same data table definition in the simple example can be used to create a paginated table. Pager component provides functionality to traverse among pages.
 
+### Demo App & Twiddles
+
 Note that visual representation of examples provided in this documentation can be reached at our [demo page](https://tubitak-bilgem-yte.github.io/ember-contextual-table/dist/index.html); you can also check out source code for examples from [demo repository](https://github.com/tubitak-bilgem-yte/ember-contextual-table-demo).
-
-
-Check [wiki pages](https://github.com/tubitak-bilgem-yte/ember-contextual-table/wiki) for usage.
 
 Check twiddle for quick demos:
  1. [Simple Table](https://ember-twiddle.com/6ef893dad915977f14d96274b23b72eb) 
