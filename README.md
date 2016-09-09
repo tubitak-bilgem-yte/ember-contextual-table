@@ -10,7 +10,7 @@
 
 Ember Table as a Contextual Component
 
-# Motivation
+## Motivation
 
 ember-contextual-table is an addon developed based on [Open/Closed principle](https://en.wikipedia.org/wiki/Open/closed_principle) thanks to rocking Contextual Components concept of Ember.
 
