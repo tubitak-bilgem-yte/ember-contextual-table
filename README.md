@@ -73,7 +73,7 @@ In this example; a selection column along with 4 other columns are declared so a
 
 In this more advanced example above; two selection columns are declared (yes you can define more than one selection column if you want; for whatever logical reason). The first one is a standard one where a checkbox appears inside the cell to indicate selection status of corresponding row; where as the second one is used in block form and a button is used as cell content. The second selection column contains if conditions in its block form usage. This is the way you can customize a column or a selection column. You declare your column's appearance for header, body, and even for footer within corresponding if block; i.e., `{{#if col.header}}...{{/if}}`. A similar customization is performed for 'Age' column in the example above.
 
-### Power of OCP (Paginator Sample)
+### Power of Open/Closed Principle (Paginator Sample)
 
 Paging/pagination is one of many features offered by various table components; hence we also included a few components in order to illustrate how paging can be achieved with ember-contextual-component. Instead of creating a pagination-data-table by extending data-table; (since this is an obvious violation of [favoring composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance)) we again made use of ember's block form components. Consider the example given below:
 
@@ -94,7 +94,7 @@ Data paginator component provided inside this addon can be used to create a pagi
 ### Demo App & Twiddles
 
  1. [Demo App Page](https://tubitak-bilgem-yte.github.io/ember-contextual-table/dist/index.html)
- 2. [Demo App Repository](https://github.com/tubitak-bilgem-yte/ember-contextual-table-demo).
+ 2. [Demo App Repository](https://github.com/tubitak-bilgem-yte/ember-contextual-table-demo)
 
 Check twiddle for quick demos:
  1. [Simple Table](https://ember-twiddle.com/6ef893dad915977f14d96274b23b72eb) 
