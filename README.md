@@ -93,7 +93,8 @@ Data paginator component provided inside this addon can be used to create a pagi
 
 ### Demo App & Twiddles
 
-Note that visual representation of examples provided in this documentation can be reached at our [demo page](https://tubitak-bilgem-yte.github.io/ember-contextual-table/dist/index.html); you can also check out source code for examples from [demo repository](https://github.com/tubitak-bilgem-yte/ember-contextual-table-demo).
+ 1. [Demo App Page](https://tubitak-bilgem-yte.github.io/ember-contextual-table/dist/index.html)
+ 2. [Demo App Repository](https://github.com/tubitak-bilgem-yte/ember-contextual-table-demo).
 
 Check twiddle for quick demos:
  1. [Simple Table](https://ember-twiddle.com/6ef893dad915977f14d96274b23b72eb) 
