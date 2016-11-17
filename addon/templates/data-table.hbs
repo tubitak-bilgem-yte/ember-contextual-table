@@ -18,6 +18,7 @@
         {{yield (hash
         column=(component 'dt-column-cell' row=row rowIndex=index)
         selectionColumn=(component 'dt-selection-column' row=row rowIndex=index isRowSelected=(array-contains selectedRows row) rowSelected=(action 'selected' row) rowDeselected=(action 'deselected' row))
+        row=row
         )}}
     </tr>
 {{/each}}
