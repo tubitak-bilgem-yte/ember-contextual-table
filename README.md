@@ -67,7 +67,7 @@ In this example; a selection column along with 4 other columns are declared so a
             {{col.row.nationality}}
         {{/t.column}}
         {{#t.column name='Order' defaultHeader=true as |col|}}
-            {{col.index}}
+            {{col.rowIndex}}
         {{/t.column}}
     {{/data-table}}
 
