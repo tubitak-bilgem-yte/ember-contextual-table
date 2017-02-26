@@ -1,0 +1,12 @@
+{{#if hasBlock}}
+  {{yield (hash onclick=(action 'onclick') fieldName=propertyName isAscending=(readonly isAscending) footer=true)}}
+{{else}}
+  {{name}}
+  {{#if upArrowVisible}}
+    <span>▴</span>
+  {{else if downArrowVisible}}
+    <span>▾</span>
+  {{else}}
+    <span>▴▾</span>
+  {{/if}}
+{{/if}}
