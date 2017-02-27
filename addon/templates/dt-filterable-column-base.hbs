@@ -1,0 +1,5 @@
+{{#if hasBlock}}
+  {{yield (hash onfilterupdate=(action 'onfilterupdate') footer=(readonly footer) header=(readonly header))}}
+{{else}}
+  {{input value=(readonly filterText) key-up=(action 'onfilterupdate') placeholder=placeholder}}
+{{/if}}
