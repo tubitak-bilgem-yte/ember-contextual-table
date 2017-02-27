@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('dt-filterable-column-header', 'Integration | Component | dt filterable column header', {
+moduleForComponent('dt-filterable-column-footer', 'Integration | Component | dt filterable column footer', {
   integration: true,
 });
 
@@ -9,7 +9,7 @@ test('it renders an input for filtering in simple form', function(assert) {
   assert.expect(4);
   this.set('eventFireCount', 0);
   addEventListener.bind(this)(assert);
-  this.render(hbs`{{dt-filterable-column-header filtertextupdated=(action 'myAction') filterText=filterText placeholder='Filter...'}}`);
+  this.render(hbs`{{dt-filterable-column-footer filtertextupdated=(action 'myAction') filterText=filterText placeholder='Filter...'}}`);
 
   assert.equal(this.$('input').text().trim(), '', 'Filter text should have been initially empty');
   assert.equal(this.$('input').attr('placeholder'), 'Filter...', 'Placeholder should have been passed to the input');
@@ -20,18 +20,18 @@ test('it renders an input for filtering in simple form', function(assert) {
   this.set('filterText', 'john');
 });
 
-test('it yields header true and corresponding action in block form', function(assert) {
+test('it yields footer true and corresponding action in block form', function(assert) {
   assert.expect(3);
   this.set('eventFireCount', 0);
   addEventListener.bind(this)(assert);
   this.render(hbs`
-    {{#dt-filterable-column-header filtertextupdated=(action 'myAction') as |fc|}}
+    {{#dt-filterable-column-footer filtertextupdated=(action 'myAction') as |fc|}}
       {{fc.header}}-{{fc.footer}}
       {{input key-up=(action fc.onfilterupdate)}}
-    {{/dt-filterable-column-header}}
+    {{/dt-filterable-column-footer}}
   `);
 
-  assert.equal(this.$('th').text().trim(), 'true-', 'Yielded header should have been true and footer should have been undefined');
+  assert.equal(this.$('td').text().trim(), '-true', 'Yielded header should have been undefined and footer should have been true');
 
   this.$('input').val('jack');
   this.$('input').keyup();

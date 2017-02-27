@@ -6,8 +6,9 @@
         <tr class="contextual-table-header-row">
             {{yield (hash
             column=(component 'dt-column-header')
-            selectionColumn=(component (if singleSelection 'dt-column-header' 'dt-selection-column-header') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
             filterableColumn=(component 'dt-filterable-column-header')
+            selectionColumn=(component (if singleSelection 'dt-column-header' 'dt-selection-column-header') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
+            sortableColumn=(component 'dt-sortable-column-header')
             )}}
         </tr>
         </thead>
@@ -18,8 +19,9 @@
     <tr class={{if (array-contains selectedRows row) 'contextual-table-selected-row contextual-table-row' 'contextual-table-row'}} {{action (if (array-contains selectedRows row) 'deselected' 'selected') row on='doubleClick'}}>
         {{yield (hash
         column=(component 'dt-column-cell' row=row rowIndex=index)
-        selectionColumn=(component 'dt-selection-column' row=row rowIndex=index isRowSelected=(array-contains selectedRows row) rowSelected=(action 'selected' row) rowDeselected=(action 'deselected' row)) row=row
         filterableColumn=(component 'dt-column-cell' row=row rowIndex=index)
+        selectionColumn=(component 'dt-selection-column' row=row rowIndex=index isRowSelected=(array-contains selectedRows row) rowSelected=(action 'selected' row) rowDeselected=(action 'deselected' row)) row=row
+        sortableColumn =(component 'dt-column-cell' row=row rowIndex=index)
         )}}
     </tr>
 {{/each}}
@@ -32,8 +34,9 @@
         <tr class="contextual-table-footer-row">
             {{yield (hash
             column=(component 'dt-column-footer')
-            selectionColumn=(component (if singleSelection 'dt-column-footer' 'dt-selection-column-footer') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
             filterableColumn=(component 'dt-filterable-column-footer')
+            selectionColumn=(component (if singleSelection 'dt-column-footer' 'dt-selection-column-footer') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
+            sortableColumn =(component 'dt-column-cell' row=row rowIndex=index)
             )}}
         </tr>
         </tfoot>

@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   layout,
 
   filterTextChanged:observer('filterText', function (){
-    let actionHandler = this.get('onfilterupdated') || Ember.K;
+    let actionHandler = this.get('filtertextupdated') || Ember.K;
     actionHandler(this.get('filterText'));
   }),
 
