@@ -82,6 +82,30 @@ test('it renders data wrt. custom comparator no matter what sort fields are', fu
   assertOrderOfData(this.$(), assert, '1324', 'sorting with name-ascending after custom comparator removal failed');
 });
 
+test('it renders data wrt. a fields cycling between ascending-descending-none sorting', function(assert) {
+  assert.expect(4);
+  this.set('isAscending', true);
+
+  this.render(hbs`
+    {{#data-sorter data=data as |ds|}}
+      {{#each ds.data as |item|}}
+        {{item.id}}     
+      {{/each}}
+      <button id="button" onclick={{action ds.onsortfieldupdated 'id' isAscending}}></button>
+    {{/data-sorter}}
+  `);
+
+  assertOrderOfData(this.$(), assert, '3214', 'some sorting is performed unexpectedly initially');
+  this.$('#button').click();
+  assertOrderOfData(this.$(), assert, '1234', 'ascending sorting wrt. id failed');
+  this.set('isAscending', undefined);
+  this.$('#button').click();
+  assertOrderOfData(this.$(), assert, '3214', 'some sorting is performed unexpectedly after id sorting is cleared');
+  this.set('isAscending', false);
+  this.$('#button').click();
+  assertOrderOfData(this.$(), assert, '4321', 'descending sorting wrt. id failed');
+});
+
 function assertOrderOfData($, assert, expected, message) {
   assert.equal($.text().trim().replace(/\s/g, ''), expected, message);
 }

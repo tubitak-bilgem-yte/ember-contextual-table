@@ -11,22 +11,6 @@ export default Ember.Component.extend({
     return this.get('isAscending') === true;
   }),
 
-  click: function () {
-    if (this.get('isAscending') === true) {
-      this.set('isAscending', false);
-    } else if (this.get('isAscending') === undefined) {
-      this.set('isAscending', true);
-    } else {
-      this.set('isAscending', undefined);
-    }
-
-    // Prevent auto event firing in case of block form usage!
-    if (this.$('#hasBlockIdentifier').length>0) {
-      return;
-    }
-    this.fireSortInformationUpdatedEvent(this.get('propertyName'), this.get('isAscending'));
-  },
-
   fireSortInformationUpdatedEvent(fieldName, isAscending) {
     let actionHandler = this.get('sortinformationupdated') || Ember.K;
     actionHandler(fieldName, isAscending);
@@ -35,6 +19,18 @@ export default Ember.Component.extend({
   actions: {
     onsortinfoupdate: function (fieldName, isAscending) {
       this.fireSortInformationUpdatedEvent(fieldName, isAscending);
+    },
+
+    onclick: function () {
+      if (this.get('isAscending') === true) {
+        this.set('isAscending', false);
+      } else if (this.get('isAscending') === undefined) {
+        this.set('isAscending', true);
+      } else {
+        this.set('isAscending', undefined);
+      }
+
+      this.fireSortInformationUpdatedEvent(this.get('propertyName'), this.get('isAscending'));
     }
   }
 });

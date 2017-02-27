@@ -82,8 +82,10 @@ export default Ember.Component.extend({
         return item.indexOf(fieldName) !== 0;
       });
 
-      let postFix = isAscending ? "asc" : "desc";
-      filteredArray.push(`${fieldName}:${postFix}`);
+      if (!isEmpty(isAscending)) {
+        let postFix = isAscending ? "asc" : "desc";
+        filteredArray.push(`${fieldName}:${postFix}`);
+      }
 
       this.set('sortFields', filteredArray);
     }

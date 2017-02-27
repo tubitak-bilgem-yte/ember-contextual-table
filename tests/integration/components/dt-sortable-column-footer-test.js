@@ -29,17 +29,17 @@ test('it renders up and down arrows in simple form', function(assert) {
   });
 
   this.render(hbs`{{dt-sortable-column-footer name=name propertyName=propertyName sortinformationupdated=(action 'myAction')}}`);
-  assertText(this.$(), assert, 'SortableFooter▴▾', 'Both up and down arrows are visible initially');
-  this.$('td').click();
-  assertText(this.$(), assert, 'SortableFooter▾', 'Only down arrow is visible when isAscending is true');
-  this.$('td').click();
-  assertText(this.$(), assert, 'SortableFooter▴', 'Only up arrow is visible when isAscending is false');
-  this.$('td').click();
-  assertText(this.$(), assert, 'SortableFooter▴▾', 'Both up and down arrows are visible at 3rd click');
-  this.$('td').click();
-  assertText(this.$(), assert, 'SortableFooter▾', 'Only down arrow is visible when isAscending is true after 4th click');
-  this.$('td').click();
-  assertText(this.$(), assert, 'SortableFooter▴', 'Only down arrow is visible when isAscending is false after 5th click');
+  assertText(this.$(), assert, 'SortableFooter●', 'None of up and down arrows are visible initially');
+  this.$('span').click();
+  assertText(this.$(), assert, 'SortableFooter▼', 'Only down arrow is visible when isAscending is true');
+  this.$('span').click();
+  assertText(this.$(), assert, 'SortableFooter▲', 'Only up arrow is visible when isAscending is false');
+  this.$('span').click();
+  assertText(this.$(), assert, 'SortableFooter●', 'None of up and down arrows are visible at 3rd click');
+  this.$('span').click();
+  assertText(this.$(), assert, 'SortableFooter▼', 'Only down arrow is visible when isAscending is true after 4th click');
+  this.$('span').click();
+  assertText(this.$(), assert, 'SortableFooter▲', 'Only down arrow is visible when isAscending is false after 5th click');
 });
 
 test('it renders in block form and event is fired with outsider buttons', function(assert) {

@@ -29,17 +29,17 @@ test('it renders up and down arrows in simple form', function(assert) {
   });
 
   this.render(hbs`{{dt-sortable-column-header name=name propertyName=propertyName sortinformationupdated=(action 'myAction')}}`);
-  assertText(this.$(), assert, 'SortableHeader▴▾', 'Both up and down arrows are visible initially');
-  this.$('th').click();
-  assertText(this.$(), assert, 'SortableHeader▾', 'Only down arrow is visible when isAscending is true');
-  this.$('th').click();
-  assertText(this.$(), assert, 'SortableHeader▴', 'Only up arrow is visible when isAscending is false');
-  this.$('th').click();
-  assertText(this.$(), assert, 'SortableHeader▴▾', 'Both up and down arrows are visible at 3rd click');
-  this.$('th').click();
-  assertText(this.$(), assert, 'SortableHeader▾', 'Only down arrow is visible when isAscending is true after 4th click');
-  this.$('th').click();
-  assertText(this.$(), assert, 'SortableHeader▴', 'Only down arrow is visible when isAscending is false after 5th click');
+  assertText(this.$(), assert, 'SortableHeader●', 'None of up and down arrows are visible initially');
+  this.$('span').click();
+  assertText(this.$(), assert, 'SortableHeader▼', 'Only down arrow is visible when isAscending is true');
+  this.$('span').click();
+  assertText(this.$(), assert, 'SortableHeader▲', 'Only up arrow is visible when isAscending is false');
+  this.$('span').click();
+  assertText(this.$(), assert, 'SortableHeader●', 'None of up and down arrows are visible at 3rd click');
+  this.$('span').click();
+  assertText(this.$(), assert, 'SortableHeader▼', 'Only down arrow is visible when isAscending is true after 4th click');
+  this.$('span').click();
+  assertText(this.$(), assert, 'SortableHeader▲', 'Only down arrow is visible when isAscending is false after 5th click');
 });
 
 test('it renders in block form and event is fired with outsider buttons', function(assert) {

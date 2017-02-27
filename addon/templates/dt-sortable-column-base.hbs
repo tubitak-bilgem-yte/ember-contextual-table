@@ -1,13 +1,14 @@
 {{#if hasBlock}}
-  <span id="hasBlockIdentifier"></span>
   {{yield (hash onsortinfoupdate=(action 'onsortinfoupdate') footer=(readonly footer) header=(readonly header))}}
 {{else}}
-  {{name}}
-  {{#if upArrowVisible}}
-    <span>▴</span>
-  {{else if downArrowVisible}}
-    <span>▾</span>
-  {{else}}
-    <span>▴▾</span>
-  {{/if}}
+  <span onclick={{action "onclick"}}>
+    {{name}}
+    {{#if upArrowVisible}}
+      <span>▲</span>
+    {{else if downArrowVisible}}
+      <span>▼</span>
+    {{else}}
+      <span>●</span>
+    {{/if}}
+  </span>
 {{/if}}
