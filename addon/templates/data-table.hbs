@@ -7,7 +7,7 @@
             {{yield (hash
             column=(component 'dt-column-header')
             selectionColumn=(component (if singleSelection 'dt-column-header' 'dt-selection-column-header') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
-            sortableColum=(component 'dt-sortable-column-header')
+            sortableColumn=(component 'dt-sortable-column-header')
             )}}
         </tr>
         </thead>

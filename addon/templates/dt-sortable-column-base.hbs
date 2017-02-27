@@ -1,5 +1,6 @@
 {{#if hasBlock}}
-  {{yield (hash onclick=(action 'onclick') fieldName=propertyName isAscending=(readonly isAscending) header=true)}}
+  <span id="hasBlockIdentifier"></span>
+  {{yield (hash onsortinfoupdate=(action 'onsortinfoupdate') footer=(readonly footer) header=(readonly header))}}
 {{else}}
   {{name}}
   {{#if upArrowVisible}}
