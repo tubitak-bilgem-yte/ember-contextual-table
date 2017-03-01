@@ -45,7 +45,7 @@ test('Sorting with respect to multiple fields both descending & ascending', func
 });
 
 test('Sorting with custom comparator function overrides sort fields', function(assert) {
-  let component = this.subject({data: util.data, sortFields: ["name:desc", "surname:asc"], comparator: util.customComparator});
+  let component = this.subject({data: util.data, sortFields: ["name:desc", "surname:asc"], sorter: util.customSorter});
   let sortedData = component.get('sortedData');
   let message = "Sorting wrt. custom comparator ";
 

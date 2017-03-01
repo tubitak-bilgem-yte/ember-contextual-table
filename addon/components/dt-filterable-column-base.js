@@ -5,14 +5,14 @@ const {observer} = Ember;
 export default Ember.Component.extend({
   layout,
 
-  filterTextChanged:observer('filterText', function (){
-    let actionHandler = this.get('filtertextupdated') || Ember.K;
-    actionHandler(this.get('filterText'));
+  filterValueChanged:observer('filterValue', function (){
+    let actionHandler = this.get('filtervalueupdated') || Ember.K;
+    actionHandler(this.get('filterValue'));
   }),
 
   actions: {
-    onfilterupdate: function (filterText) {
-      this.set('filterText', filterText);
+    onfilterupdate: function (filterValue) {
+      this.set('filterValue', filterValue);
     }
   }
 });
