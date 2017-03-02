@@ -9,7 +9,8 @@ test('it renders an input for filtering in simple form', function(assert) {
   assert.expect(4);
   this.set('eventFireCount', 0);
   addEventListener.bind(this)(assert);
-  this.render(hbs`{{dt-filterable-column-header filtervalueupdated=(action 'myAction') filterValue=filterValue placeholder='Filter...'}}`);
+  this.render(hbs`{{dt-filterable-column-header filterinformationupdated=(action 'myAction') 
+    propertyName="Name" filterValue=filterValue placeholder='Filter...'}}`);
 
   assert.equal(this.$('input').text().trim(), '', 'Filter text should have been initially empty');
   assert.equal(this.$('input').attr('placeholder'), 'Filter...', 'Placeholder should have been passed to the input');
@@ -25,7 +26,7 @@ test('it yields header true and corresponding action in block form', function(as
   this.set('eventFireCount', 0);
   addEventListener.bind(this)(assert);
   this.render(hbs`
-    {{#dt-filterable-column-header filtervalueupdated=(action 'myAction') as |fc|}}
+    {{#dt-filterable-column-header filterinformationupdated=(action 'myAction') as |fc|}}
       {{fc.header}}-{{fc.footer}}
       {{input key-up=(action fc.onfilterupdate)}}
     {{/dt-filterable-column-header}}
@@ -41,7 +42,7 @@ test('it yields header true and corresponding action in block form', function(as
 });
 
 function addEventListener(assert) {
-  this.on('myAction', function(filterValue){
+  this.on('myAction', function(fieldName, filterValue){
     let eventFireCount = this.get('eventFireCount') + 1;
     this.set('eventFireCount', eventFireCount);
 
