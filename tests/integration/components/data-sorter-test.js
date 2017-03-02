@@ -63,7 +63,7 @@ test('it renders data wrt. sorting multiple fields dynamically', function(assert
   assertOrderOfData(this.$(), assert, '1234', 'sorting with respect to name-ascending & id-ascending failed');
 });
 
-test('it renders data wrt. custom sorter no matter what sort fields are', function(assert) {
+test('it renders data wrt. custom sorter', function(assert) {
   assert.expect(2);
 
   this.set('sortFields', ["name:desc", "surname:asc"]);

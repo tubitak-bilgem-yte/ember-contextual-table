@@ -57,7 +57,7 @@ export default Ember.Component.extend({
       });
 
       if (!isEmpty(filter)) {
-        remainingFilters.pushObject(createFieldFilter(fieldName, filter));
+        remainingFilters.push(createFieldFilter(fieldName, filter));
       }
 
       this.set('fieldFilters', remainingFilters);
