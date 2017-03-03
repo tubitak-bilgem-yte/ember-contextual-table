@@ -38,7 +38,7 @@
     "ember-export-application-global": "^1.0.4",
     "ember-resolver": "^2.0.3",
     "ember-try": "~0.0.8",
-    "ember-array-contains-helper": "1.2.0"
+    "ember-array-contains-helper": "1.3.1"
   },
   "keywords": [
     "ember-addon",
@@ -48,7 +48,7 @@
   "dependencies": {
     "ember-cli-babel": "^5.1.5",
     "ember-cli-htmlbars": "^1.0.1",
-    "ember-array-contains-helper": "1.2.0"
+    "ember-array-contains-helper": "1.3.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
