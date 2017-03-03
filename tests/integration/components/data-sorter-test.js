@@ -63,23 +63,23 @@ test('it renders data wrt. sorting multiple fields dynamically', function(assert
   assertOrderOfData(this.$(), assert, '1234', 'sorting with respect to name-ascending & id-ascending failed');
 });
 
-test('it renders data wrt. custom comparator no matter what sort fields are', function(assert) {
+test('it renders data wrt. custom sorter', function(assert) {
   assert.expect(2);
 
-  this.set('sortFields', ['name:asc']);
-  this.set('comparator', util.customComparator);
+  this.set('sortFields', ["name:desc", "surname:asc"]);
+  this.set('sorter', util.customSorter);
 
   this.render(hbs`
-    {{#data-sorter data=data comparator=comparator sortFields=sortFields as |ds|}}
+    {{#data-sorter data=data sorter=sorter sortFields=sortFields as |ds|}}
       {{#each ds.data as |item|}}
         {{item.id}}     
       {{/each}}
     {{/data-sorter}}
   `);
 
-  assertOrderOfData(this.$(), assert, '2431', 'sorting with respect to custom comparator failed');
-  this.set('comparator', null);
-  assertOrderOfData(this.$(), assert, '1324', 'sorting with name-ascending after custom comparator removal failed');
+  assertOrderOfData(this.$(), assert, '2431', 'sorting with respect to custom sorter failed');
+  this.set('sorter', null);
+  assertOrderOfData(this.$(), assert, '3241', 'sorting with name-descending, surname-ascending after custom sorter removal failed');
 });
 
 test('it renders data wrt. a fields cycling between ascending-descending-none sorting', function(assert) {

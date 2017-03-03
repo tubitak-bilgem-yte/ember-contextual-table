@@ -2,6 +2,34 @@ import Ember from 'ember';
 const {computed, isEmpty, get} = Ember;
 import layout from '../templates/data-sorter';
 
+function internalSorter(data, sortFields) {
+
+  if (isEmpty(sortFields)) {
+    return data;
+  }
+
+  let internalComparator = new InternalComparator(sortFields);
+  data.sort(internalComparator.compare);
+
+  return data;
+}
+
+function InternalComparator(sortFields) {
+  this.compare = function(a, b) {
+    for (let index = 0; index <sortFields.length; index++) {
+      let sortField = sortFields[index];
+      let coefficient = sortField['isAscending'] ? 1 : -1;
+      let fieldName = sortField['fieldName'];
+      let result = simpleCompare(get(a, fieldName), get(b, fieldName));
+
+      if (result !== 0) {
+        return result * coefficient;
+      }
+    }
+
+    return 0;
+  };
+}
 function simpleCompare(a,b) {
   let comparison = a > b;
   let equality = a === b;
@@ -16,7 +44,7 @@ function createSortField(fieldName) {
     isAscending = tokens[1] !== 'desc';
   }
 
-  return {name: tokens[0], isAscending: isAscending};
+  return {fieldName: tokens[0], isAscending: isAscending};
 }
 
 export default Ember.Component.extend({
@@ -31,14 +59,14 @@ export default Ember.Component.extend({
     }
   },
 
-  sortedData:computed('data', 'sortFields.[]', 'comparator', function() {
+  sortedData:computed('data', 'sortFields.[]', 'sorter', function() {
     if (isEmpty(this.get('data'))) {
       return [];
     }
 
-    let comparator = this.get('comparator') || this.get('internalComparator').bind(this);
+    let sorter = this.get('sorter') || internalSorter;
 
-    return this.get('data').slice().sort(comparator);
+    return sorter(this.get('data').slice(), this.get('internalSortFields'));
   }),
 
   internalSortFields: computed('sortFields.[]', function () {
@@ -54,27 +82,6 @@ export default Ember.Component.extend({
 
     return result;
   }),
-
-  internalComparator: function(a, b) {
-    let sortFields = this.get('internalSortFields');
-
-    if (isEmpty(sortFields)) {
-      return 0;
-    }
-
-    for (let index = 0; index <sortFields.length; index++) {
-      let sortField = sortFields[index];
-      let coefficient = sortField['isAscending'] ? 1 : -1;
-      let fieldName = sortField['name'];
-      let result = simpleCompare(get(a, fieldName), get(b, fieldName));
-
-      if (result !== 0) {
-        return result * coefficient;
-      }
-    }
-
-    return 0;
-  },
 
   actions: {
     onsortfieldupdated: function (fieldName, isAscending) {
