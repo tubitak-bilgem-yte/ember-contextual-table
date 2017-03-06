@@ -11,10 +11,10 @@ var chedjou = {name:'Aurélien', surname:'Chedjou', age:31, nationality:'Cameroo
 var players = [sneijder, podolski, muslera, selcuk, chedjou];
 
 function assertPlayer(assert,index,player) {
-  assert.equal(this.$(`tr:eq(${index})`).find("td:eq(1)").text().trim(), player['name']);
-  assert.equal(this.$(`tr:eq(${index})`).find("td:eq(2)").text().trim(), player['surname']);
-  assert.equal(this.$(`tr:eq(${index})`).find("td:eq(3)").text().trim(), player['age']);
-  assert.equal(this.$(`tr:eq(${index})`).find("td:eq(4)").text().trim(), player['nationality']);
+  assert.equal(Ember.$(`tr:eq(${index})`).find("td:eq(1)").text().trim(), player['name']);
+  assert.equal(Ember.$(`tr:eq(${index})`).find("td:eq(2)").text().trim(), player['surname']);
+  assert.equal(Ember.$(`tr:eq(${index})`).find("td:eq(3)").text().trim(), player['age']);
+  assert.equal(Ember.$(`tr:eq(${index})`).find("td:eq(4)").text().trim(), player['nationality']);
 }
 
 
