@@ -91,10 +91,10 @@ Paging/pagination is one of many features offered by various table components; h
 
 Data paginator component provided inside this addon can be used to create a paginator and the same data table definition in the simple example can be used to create a paginated table. Pager component provides functionality to traverse among pages.
 
-### Demo App & Twiddles
+### Guide & Twiddles
 
- 1. [Demo App Page](https://tubitak-bilgem-yte.github.io/ember-contextual-table/dist/index.html)
- 2. [Demo App Repository](https://github.com/tubitak-bilgem-yte/ember-contextual-table-demo)
+ 1. [Guide Page](https://tubitak-bilgem-yte.github.io/ember-contextual-table)
+ 2. [Guide Repository](https://github.com/tubitak-bilgem-yte/ember-contextual-table-demo)
 
 Check twiddle for quick demos:
  1. [Simple Table](https://ember-twiddle.com/6ef893dad915977f14d96274b23b72eb) 
