@@ -43,41 +43,46 @@ test('it renders up and down arrows in simple form', function(assert) {
 });
 
 test('it renders in block form and event is fired with outsider buttons', function(assert) {
-  assert.expect(7);
-  this.set('fieldName', 'foo');
+  assert.expect(10);
+  this.set('isAscending', undefined);
+  this.set('buttonPressCount', 0);
+
 
   this.on('myAction', function(fieldName, isAscending) {
-    this.set('fieldName', fieldName);
+    this.set('buttonPressCount', this.get('buttonPressCount') + 1);
+    let buttonPressCount = this.get('buttonPressCount');
+    this.set('isAscending', isAscending);
+    assert.equal(fieldName, 'theNameOfProperty', 'Property name should have been "theNameOfProperty"');
 
-    if (fieldName === "firstProperty") {
-      assert.equal(isAscending, true, 'First property should have been requested in ascending order');
-    } else if (fieldName === "secondProperty") {
-      assert.equal(isAscending, undefined, 'Second property should have been requested in undefined order');
-    } else if (fieldName === "thirdProperty") {
-      assert.equal(isAscending, false, 'Third property should have been requested in descending order');
+    if (buttonPressCount === 1) {
+      assert.equal(isAscending, true, 'First click should have resulted in ascending order');
+    } else if (buttonPressCount === 2) {
+      assert.equal(isAscending, undefined, 'Second click should have resulted in undefined order');
+    } else if (buttonPressCount === 3) {
+      assert.equal(isAscending, false, 'Third click should have resulted in descending order');
     }
   });
 
   this.render(hbs`
-    {{#dt-sortable-column-footer name=name propertyName=propertyName sortinformationupdated=(action 'myAction') as |sc|}}
-      {{sc.header}}-{{fieldName}}-{{sc.footer}}
-      <button id="button1" onclick={{action sc.onsortinfoupdate "firstProperty" true}}></button>
-      <button id="button2" onclick={{action sc.onsortinfoupdate "secondProperty" undefined}}></button>
-      <button id="button3" onclick={{action sc.onsortinfoupdate "thirdProperty" false}}></button>
+    {{#dt-sortable-column-footer name=name propertyName='theNameOfProperty' sortinformationupdated=(action 'myAction') as |sc|}}
+      {{sc.header}}-{{isAscending}}-{{sc.footer}}
+      <button id="button1" onclick={{action sc.onsortinfoupdate true}}></button>
+      <button id="button2" onclick={{action sc.onsortinfoupdate undefined}}></button>
+      <button id="button3" onclick={{action sc.onsortinfoupdate false}}></button>
     {{/dt-sortable-column-footer}}
   `);
 
   // Does not fire event that was fired by default
   this.$('td').click();
-  assertText(this.$(), assert, '-foo-true', 'Following should have hold: Yielded header-undefined, field property-foo, yielded footer-true');
+  assertText(this.$(), assert, '--true', 'Following should have hold: Yielded header-undefined, isAscending undefined, yielded footer-true');
 
   // Button clicks fire event
-  this.$('#button2').click();
-  assertText(this.$(), assert, '-secondProperty-true', 'Following should have hold: Yielded header-undefined, field property-secondProperty, yielded footer-true');
-  this.$('#button3').click();
-  assertText(this.$(), assert, '-thirdProperty-true', 'Following should have hold: Yielded header-undefined, field property-thirdProperty, yielded footer-true');
   this.$('#button1').click();
-  assertText(this.$(), assert, '-firstProperty-true', 'Following should have hold: Yielded header-undefined, field property-firstProperty, yielded footer-true');
+  assertText(this.$(), assert, '-true-true', 'Following should have hold: Yielded header-undefined, isAscending true, yielded footer-true');
+  this.$('#button2').click();
+  assertText(this.$(), assert, '--true', 'Following should have hold: Yielded header-undefined, isAscending undefined, yielded footer-true');
+  this.$('#button3').click();
+  assertText(this.$(), assert, '-false-true', 'Following should have hold: Yielded header-undefined, isAscending false, yielded footer-true');
 });
 
 function assertText($, assert, expected, message) {

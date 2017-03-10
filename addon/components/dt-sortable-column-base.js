@@ -11,14 +11,14 @@ export default Ember.Component.extend({
     return this.get('isAscending') === true;
   }),
 
-  fireSortInformationUpdatedEvent(fieldName, isAscending) {
+  fireSortInformationUpdatedEvent(isAscending) {
     let actionHandler = this.get('sortinformationupdated') || Ember.K;
-    actionHandler(fieldName, isAscending);
+    actionHandler(this.get('propertyName'), isAscending);
   },
 
   actions: {
-    onsortinfoupdate: function (fieldName, isAscending) {
-      this.fireSortInformationUpdatedEvent(fieldName, isAscending);
+    onsortinfoupdate: function (isAscending) {
+      this.fireSortInformationUpdatedEvent(isAscending);
     },
 
     onclick: function () {
@@ -30,7 +30,7 @@ export default Ember.Component.extend({
         this.set('isAscending', undefined);
       }
 
-      this.fireSortInformationUpdatedEvent(this.get('propertyName'), this.get('isAscending'));
+      this.fireSortInformationUpdatedEvent(this.get('isAscending'));
     }
   }
 });

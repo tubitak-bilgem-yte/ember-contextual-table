@@ -36,7 +36,7 @@
             column=(component 'dt-column-footer')
             filterableColumn=(component 'dt-filterable-column-footer')
             selectionColumn=(component (if singleSelection 'dt-column-footer' 'dt-selection-column-footer') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
-            sortableColumn =(component 'dt-column-cell' row=row rowIndex=index)
+            sortableColumn =(component 'dt-sortable-column-footer')
             )}}
         </tr>
         </tfoot>
