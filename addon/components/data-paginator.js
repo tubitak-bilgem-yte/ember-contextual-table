@@ -32,7 +32,10 @@ export default Ember.Component.extend({
   fireDataRequested:function(){
     let offset = this.get('offset');
     let limit = this.get('limit');
-    (this.get('dataRequested')||Ember.K)(offset, limit);
+	let dataRequested = this.get('dataRequested');
+	if(dataRequested){
+		dataRequested(offset, limit);
+	}
   },
 
   actions:{

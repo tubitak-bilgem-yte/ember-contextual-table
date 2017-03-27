@@ -13,7 +13,7 @@ export default Ember.Component.extend({
   notSelectedRows:Ember.computed.setDiff('data','selectedRows'),
   isAllSelected:Ember.computed.empty('notSelectedRows'),
 
-  selectionChanged:Ember.K,
+  selectionChanged:function(){},
   classNames:['contextual-data-table'],
 
   selectedRows:Ember.computed('data.[]',{
