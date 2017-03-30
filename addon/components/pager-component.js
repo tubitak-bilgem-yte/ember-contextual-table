@@ -26,14 +26,14 @@ export default Ember.Component.extend({
         return;
       }
 
-      (this.get('previous')||Ember.K)();
+      (this.get('previous')|| function(){})();
     },
     next:function(){
       if (this.get('nextDisabled')) {
         return;
       }
 
-      (this.get('next')||Ember.K)();
+      (this.get('next')|| function(){})();
     }
   }
 });

@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   layout,
 
   filterValueChanged:observer('filterValue', function (){
-    let actionHandler = this.get('filterinformationupdated') || Ember.K;
+    let actionHandler = this.get('filterinformationupdated') || function(){};
     actionHandler(this.get('propertyName'), this.get('filterValue'));
   }),
 
