@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   actions:{
     change:function(checked){
       let actionName=checked ? 'rowSelected' : 'rowDeselected';
-      let action = this.get(actionName) || Ember.K;
+      let action = this.get(actionName) || function(){};
       action();
     }
   }

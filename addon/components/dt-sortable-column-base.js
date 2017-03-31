@@ -12,7 +12,7 @@ export default Ember.Component.extend({
   }),
 
   fireSortInformationUpdatedEvent(isAscending) {
-    let actionHandler = this.get('sortinformationupdated') || Ember.K;
+    let actionHandler = this.get('sortinformationupdated') || function(){};
     actionHandler(this.get('propertyName'), isAscending);
   },
 
