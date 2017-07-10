@@ -238,3 +238,22 @@ test('column yield values', function(assert) {
   assert.equal(this.$('td:eq(0)').text().trim(), '0-selection-false-true');
   assert.equal(this.$('td:eq(1)').text().trim(), 'Sneijder-0-true');
 });
+
+
+test('create extra row', function(assert) {
+  this.set('data', [sneijder]);
+
+  this.render(hbs`
+    {{#data-table data=data selectionMode='multi' as |t|}}
+      {{t.column propertyName='name' name='Name'}}
+      {{#t.extraRow as |er|}}
+        <td class="logger">
+        {{er.row.surname}}-{{er.isRowSelected}}-{{er.rowIndex}}
+        </td>
+      {{/t.extraRow}}
+    {{/data-table}}
+   `);
+
+  assert.equal(this.$('tbody>tr').length, 1+1);
+  assert.equal(this.$('.logger').text().trim(), 'Sneijder-false-0');
+});
