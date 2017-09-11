@@ -40,7 +40,7 @@ export default Ember.Component.extend({
     }
   },
 
-  filteredData:computed('data', 'filterer', 'fieldFilters.[]', function() {
+  filteredData:computed('data.[]', 'filterer', 'fieldFilters.[]', function() {
     if (isEmpty(this.get('data'))) {
       return [];
     }
