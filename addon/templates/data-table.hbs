@@ -17,7 +17,7 @@
 {{/if}}
 <tbody>
 {{#each data as |row index|}}
-    <tr class={{if (array-contains selectedRows row) 'contextual-table-selected-row contextual-table-row' 'contextual-table-row'}} {{action (if (array-contains selectedRows row) 'deselected' 'selected') row on='doubleClick'}}>
+    <tr id={{concat rowIdPrefix '-' index}} class={{if (array-contains selectedRows row) 'contextual-table-selected-row contextual-table-row' 'contextual-table-row'}} {{action (if (array-contains selectedRows row) 'deselected' 'selected') row on='doubleClick'}}>
       {{yield (hash
         column=(component 'dt-column-cell' row=row rowIndex=index)
         filterableColumn=(component 'dt-column-cell' row=row rowIndex=index)

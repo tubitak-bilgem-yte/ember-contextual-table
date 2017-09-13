@@ -257,3 +257,36 @@ test('create extra row', function(assert) {
   assert.equal(this.$('tbody>tr').length, 1+1);
   assert.equal(this.$('.logger').text().trim(), 'Sneijder-false-0');
 });
+
+test('default row id', function(assert) {
+  this.set('data', players);
+
+  this.render(hbs`
+    {{#data-table data=data selectionMode='multi' as |t|}}
+      {{t.column propertyName='name' name='Name'}}
+    {{/data-table}}
+   `);
+
+  assert.equal(this.$('#table-row-id-0>td:eq(0)').text().trim(), 'Wesley');
+  assert.equal(this.$('#table-row-id-1>td:eq(0)').text().trim(), 'Lukas');
+  assert.equal(this.$('#table-row-id-2>td:eq(0)').text().trim(), 'Fernando');
+  assert.equal(this.$('#table-row-id-3>td:eq(0)').text().trim(), 'Selcuk');
+  assert.equal(this.$('#table-row-id-4>td:eq(0)').text().trim(), 'Aurélien');
+});
+
+test('custom row id prefix', function(assert) {
+  this.set('data', players);
+
+  this.render(hbs`
+    {{#data-table data=data rowIdPrefix='my-row-id' selectionMode='multi' as |t|}}
+      {{t.column propertyName='name' name='Name'}}
+    {{/data-table}}
+   `);
+
+  assert.equal(this.$('#my-row-id-0>td:eq(0)').text().trim(), 'Wesley');
+  assert.equal(this.$('#my-row-id-1>td:eq(0)').text().trim(), 'Lukas');
+  assert.equal(this.$('#my-row-id-2>td:eq(0)').text().trim(), 'Fernando');
+  assert.equal(this.$('#my-row-id-3>td:eq(0)').text().trim(), 'Selcuk');
+  assert.equal(this.$('#my-row-id-4>td:eq(0)').text().trim(), 'Aurélien');
+
+});

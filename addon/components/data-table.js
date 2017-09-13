@@ -16,6 +16,8 @@ export default Ember.Component.extend({
   selectionChanged:function(){},
   classNames:['contextual-data-table'],
 
+  rowIdPrefix:'table-row-id',
+
   selectedRows:Ember.computed('data.[]',{
     get(){
       return Ember.A();
