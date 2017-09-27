@@ -1,4 +1,4 @@
-{{#if hasBlock}}
+{{#if (if hasBlock (if defaultHeader false true) false)}}
   {{yield (hash onsortinfoupdate=(action 'onsortinfoupdate') footer=(readonly footer) header=(readonly header))}}
 {{else}}
   <span onclick={{action "onclick"}}>
