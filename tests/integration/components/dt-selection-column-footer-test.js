@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-var selection, deselection;
+let selection, deselection;
 
 moduleForComponent('dt-selection-column-footer', 'Integration | Component | dt selection column footer', {
   integration: true,
