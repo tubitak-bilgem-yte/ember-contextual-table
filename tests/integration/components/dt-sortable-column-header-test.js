@@ -94,7 +94,7 @@ test('it renders in block form with defaultHeader=true', function(assert) {
   `);
 
   // Does not fire event that was fired by default
-  assertText(this.$(), assert, 'SortableHeader●', 'Following should have hold: Yielded header-true, isAscending undefined, yielded footer-undefined');
+  assertText(this.$(), assert, 'SortableHeader●', 'With defaultHeader=true parameter, header should be default header.');
 
 });
 
