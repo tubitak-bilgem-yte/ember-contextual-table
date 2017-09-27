@@ -53,3 +53,15 @@ function addEventListener(assert) {
     }
   });
 }
+
+test('it yields header true but defaultHeader=true', function(assert) {
+
+  this.render(hbs`
+    {{#dt-filterable-column-header defaultHeader=true as |fc|}}
+      This is some text for header
+    {{/dt-filterable-column-header}}
+  `);
+
+  assert.equal(this.$('th').text().trim(), '', 'Yielded header should have been true and footer should have been undefined');
+  assert.equal(this.$('th input').length, 1, 'There should be one input');
+});
