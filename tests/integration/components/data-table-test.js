@@ -290,3 +290,42 @@ test('custom row id prefix', function(assert) {
   assert.equal(this.$('#my-row-id-4>td:eq(0)').text().trim(), 'Aurélien');
 
 });
+
+
+
+
+test('dblclick on row triggers selectionchange action', function(assert) {
+  var selectionChangedCallCount = 0;
+
+  this.set('data', players);
+  this.on('selectionChanged', function(selectedRows){
+    if (selectionChangedCallCount === 0) {
+      assert.equal(selectedRows.length, 1, 'only one cell is selected');
+      assert.equal(selectedRows[0]['surname'], 'Muslera');
+    } else if (selectionChangedCallCount === 1) {
+      assert.equal(selectedRows.length, 0, 'selection cleared');
+    }
+
+    selectionChangedCallCount++;
+  });
+
+  this.render(hbs`
+    {{#data-table data=data showFooter=true selectionMode='multi' selectionChanged=(action 'selectionChanged') as |t|}}
+      {{t.selectionColumn}}
+      {{t.column propertyName='name' name='Name'}}
+      {{t.column propertyName='surname' name='Surname'}}
+      {{t.column propertyName='age' name='Age'}}
+      {{t.column propertyName='nationality' name='Nationality'}}
+    {{/data-table}}
+  `);
+
+  assert.equal(selectionChangedCallCount, 0);
+
+
+  this.$("tr:eq(3)")[0].dispatchEvent(new MouseEvent('dblclick', {}));
+  assert.equal(selectionChangedCallCount, 1);
+
+  this.$("tr:eq(3)")[0].dispatchEvent(new MouseEvent('dblclick', {}));
+  assert.equal(selectionChangedCallCount, 2);
+
+});
