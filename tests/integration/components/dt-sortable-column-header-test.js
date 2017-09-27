@@ -85,6 +85,20 @@ test('it renders in block form and event is fired with outsider buttons', functi
   assertText(this.$(), assert, 'true-false-', 'Following should have hold: Yielded header-true, isAscending false, yielded footer-undefined');
 });
 
+
+test('it renders in block form with defaultHeader=true', function(assert) {
+  this.render(hbs`
+    {{#dt-sortable-column-header name=name propertyName='theNameOfProperty' defaultHeader=true  as |sc|}}
+      {{sc.header}}-{{isAscending}}-{{sc.footer}}
+    {{/dt-sortable-column-header}}
+  `);
+
+  // Does not fire event that was fired by default
+  assertText(this.$(), assert, 'SortableHeader●', 'With defaultHeader=true parameter, header should be default header.');
+
+});
+
+
 function assertText($, assert, expected, message) {
   assert.equal($.text().trim().replace(/\s/g, ''), expected, message);
 }

@@ -1,4 +1,4 @@
-{{#if hasBlock}}
+{{#if (if hasBlock (if defaultHeader false true) false)}}
   {{yield (hash onfilterupdate=(action 'onfilterupdate') footer=(readonly footer) header=(readonly header))}}
 {{else}}
   {{input value=filterValue placeholder=placeholder}}
