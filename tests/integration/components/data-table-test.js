@@ -2,13 +2,13 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-var sneijder = {name:'Wesley', surname:'Sneijder', age:32, nationality:'Dutch'};
-var podolski = {name:'Lukas', surname: 'Podolski', age:31, nationality:'German'};
-var muslera = {name:'Fernando', surname:'Muslera', age:30, nationality:'Uruguayan'};
-var selcuk = {name:'Selcuk', surname: 'Inan', age:31, nationality: 'Turkish'};
-var chedjou = {name:'Aurélien', surname:'Chedjou', age:31, nationality:'Cameroonian'};
+let sneijder = {name:'Wesley', surname:'Sneijder', age:32, nationality:'Dutch'};
+let podolski = {name:'Lukas', surname: 'Podolski', age:31, nationality:'German'};
+let muslera = {name:'Fernando', surname:'Muslera', age:30, nationality:'Uruguayan'};
+let selcuk = {name:'Selcuk', surname: 'Inan', age:31, nationality: 'Turkish'};
+let chedjou = {name:'Aurélien', surname:'Chedjou', age:31, nationality:'Cameroonian'};
 
-var players = [sneijder, podolski, muslera, selcuk, chedjou];
+let players = [sneijder, podolski, muslera, selcuk, chedjou];
 
 function assertPlayer(assert,index,player) {
   assert.equal(Ember.$(`tr:eq(${index})`).find("td:eq(1)").text().trim(), player['name']);
@@ -23,7 +23,7 @@ moduleForComponent('data-table', 'Integration | Component | data table', {
 });
 
 test('renders table and responds to selections and deselections', function(assert) {
-  var selectionCount = 0;
+  let selectionCount = 0;
 
   this.set('data', players);
   this.on('selectionChanged', function(selectedRows){
@@ -102,7 +102,7 @@ test('renders custom header and footer', function(assert) {
 
 
 test('clear selectedRows after data has changed', function(assert) {
-  var selectionCount = 0;
+  let selectionCount = 0;
   this.on('selectionChanged', function(selectedRows){
     selectionCount=selectedRows.length;
   });
@@ -156,8 +156,8 @@ test('clear selectedRows after data has changed', function(assert) {
 
 
 test('selectedRows are managed from user of data-table', function(assert) {
-  var parentSelectedRows = [players[0], players[2]];
-  var resultOfSelection = [];
+  let parentSelectedRows = [players[0], players[2]];
+  let resultOfSelection = [];
 
   this.set('data', players);
   this.set('parentSelectedRows', parentSelectedRows);
@@ -288,5 +288,44 @@ test('custom row id prefix', function(assert) {
   assert.equal(this.$('#my-row-id-2>td:eq(0)').text().trim(), 'Fernando');
   assert.equal(this.$('#my-row-id-3>td:eq(0)').text().trim(), 'Selcuk');
   assert.equal(this.$('#my-row-id-4>td:eq(0)').text().trim(), 'Aurélien');
+
+});
+
+
+
+
+test('dblclick on row triggers selectionchange action', function(assert) {
+  let selectionChangedCallCount = 0;
+
+  this.set('data', players);
+  this.on('selectionChanged', function(selectedRows){
+    if (selectionChangedCallCount === 0) {
+      assert.equal(selectedRows.length, 1, 'only one cell is selected');
+      assert.equal(selectedRows[0]['surname'], 'Muslera');
+    } else if (selectionChangedCallCount === 1) {
+      assert.equal(selectedRows.length, 0, 'selection cleared');
+    }
+
+    selectionChangedCallCount++;
+  });
+
+  this.render(hbs`
+    {{#data-table data=data showFooter=true selectionMode='multi' selectionChanged=(action 'selectionChanged') as |t|}}
+      {{t.selectionColumn}}
+      {{t.column propertyName='name' name='Name'}}
+      {{t.column propertyName='surname' name='Surname'}}
+      {{t.column propertyName='age' name='Age'}}
+      {{t.column propertyName='nationality' name='Nationality'}}
+    {{/data-table}}
+  `);
+
+  assert.equal(selectionChangedCallCount, 0);
+
+
+  this.$("tr:eq(3)")[0].dispatchEvent(new MouseEvent('dblclick', {}));
+  assert.equal(selectionChangedCallCount, 1);
+
+  this.$("tr:eq(3)")[0].dispatchEvent(new MouseEvent('dblclick', {}));
+  assert.equal(selectionChangedCallCount, 2);
 
 });

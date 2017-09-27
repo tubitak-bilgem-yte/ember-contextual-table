@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-var selection, deselection;
+let selection, deselection;
 
 moduleForComponent('dt-selection-column-footer', 'Integration | Component | dt selection column footer', {
   integration: true,
@@ -44,7 +44,7 @@ test('renders in block form as button', function(assert) {
 
   this.render(hbs`
     {{#dt-selection-column-footer isSelected=selected selected=(action 'selected') deselected=(action 'deselected') as |col|}}
-        <button {{action col.change (if col.isSelected false true)}}>
+        <button onclick={{action col.change (if col.isSelected false true)}}>
           {{if col.isSelected 'Selected' 'Not Selected'}}-{{col.footer}}
         </button>
     {{/dt-selection-column-footer}}

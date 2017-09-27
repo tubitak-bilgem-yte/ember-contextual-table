@@ -45,7 +45,7 @@ In this example; a selection column along with 4 other columns are declared so a
         {{#if col.body}}
             <button class="btn btn-primary" data-toggle="button" 
                 aria-pressed="false" autocomplete="off"
-                {{action col.change (if col.isRowSelected false true)}} value={{col.isRowSelected}}>
+                onclick={{action col.change (if col.isRowSelected false true)}} value={{col.isRowSelected}}>
                 {{if col.isRowSelected 'Selected' 'Not Selected'}}
             </button>
         {{/if}}
