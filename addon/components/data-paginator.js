@@ -1,25 +1,27 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import layout from '../templates/data-paginator';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   currentPage:1,
   pageSize:10,
   classNames:['contextual-data-paginator'],
 
-  hasNext:Ember.computed('paginatedData.[]', 'pageSize', function(){
+  hasNext:computed('paginatedData.[]', 'pageSize', function(){
      return this.get('paginatedData').length === this.get('pageSize');
   }),
 
-  offset:Ember.computed('pageSize','currentPage', function(){
+  offset:computed('pageSize','currentPage', function(){
     let pageSize = this.get('pageSize');
     let currentPage = this.get('currentPage')-1;
     return currentPage * pageSize;
   }),
 
-  limit:Ember.computed.alias('pageSize'),
+  limit:alias('pageSize'),
 
-  paginatedData:Ember.computed('data.[]', 'pageSize', 'currentPage', function(){
+  paginatedData:computed('data.[]', 'pageSize', 'currentPage', function(){
     let data = this.get('data'); //TODO : Ember.assert 'data' is not null/undefined
     let pageSize = this.get('pageSize');
     let currentPage = this.get('currentPage')-1;
