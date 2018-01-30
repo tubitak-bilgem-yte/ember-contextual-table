@@ -1,30 +1,33 @@
-import Ember from 'ember';
+import { A, isArray } from '@ember/array';
+import { computed } from '@ember/object';
+import { equal, setDiff, empty } from '@ember/object/computed';
+import Component from '@ember/component';
 import layout from '../templates/data-table';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   tagName:'table',
 
   showHeader:true,
   showFooter:false,
 
-  singleSelection:Ember.computed.equal('selectionMode','single'),
+  singleSelection:equal('selectionMode','single'),
 
-  notSelectedRows:Ember.computed.setDiff('data','selectedRows'),
-  isAllSelected:Ember.computed.empty('notSelectedRows'),
+  notSelectedRows:setDiff('data','selectedRows'),
+  isAllSelected:empty('notSelectedRows'),
 
   selectionChanged:function(){},
   classNames:['contextual-data-table'],
 
   rowIdPrefix:'table-row-id',
 
-  selectedRows:Ember.computed('data.[]',{
+  selectedRows:computed('data.[]',{
     get(){
-      return Ember.A();
+      return A();
     },
     set(key, value){
-      let arr = Ember.A();
-      if(Ember.isArray(value)){
+      let arr = A();
+      if(isArray(value)){
         arr.pushObjects(value);
       }
       return arr;

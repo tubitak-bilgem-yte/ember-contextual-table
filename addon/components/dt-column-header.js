@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from '../templates/dt-column-header';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   tagName:'th',
   classNames:['contextual-header-cell']

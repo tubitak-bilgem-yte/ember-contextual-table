@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import layout from '../templates/dt-sortable-column-base';
-const {computed} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   upArrowVisible: computed('isAscending', function () {
     return this.get('isAscending') === false;

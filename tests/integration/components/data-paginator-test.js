@@ -1,6 +1,7 @@
+import { run } from '@ember/runloop';
+import { A } from '@ember/array';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
 
 var sneijder = {name:'Wesley', surname:'Sneijder', age:32, nationality:'Dutch'};
 var podolski = {name:'Lukas', surname: 'Podolski', age:31, nationality:'German'};
@@ -8,7 +9,7 @@ var muslera = {name:'Fernando', surname:'Muslera', age:30, nationality:'Uruguaya
 var selcuk = {name:'Selcuk', surname: 'Inan', age:31, nationality: 'Turkish'};
 var chedjou = {name:'Aurélien', surname:'Chedjou', age:31, nationality:'Cameroonian'};
 
-var players = Ember.A([sneijder, podolski, muslera, selcuk, chedjou]);
+var players = A([sneijder, podolski, muslera, selcuk, chedjou]);
 
 moduleForComponent('data-paginator', 'Integration | Component | data paginator', {
   integration: true
@@ -75,7 +76,7 @@ test('pushing new item to data works', function(assert) {
   assert.equal(this.$(".testspan").text().trim(), '2-2-false');
 
 
-  Ember.run(()=>{
+  run(()=>{
     players.pushObject({name:'Lionel', surname:'Carole', age:25, nationality:'French'});
   });
 

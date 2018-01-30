@@ -1,19 +1,20 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import layout from '../templates/pager-component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   classNames:['contextual-pager-component'],
 
-  previousDisabled: Ember.computed('currentPage',function(){
+  previousDisabled: computed('currentPage',function(){
     return (this.get('currentPage') <= 1) ;
   }),
 
-  previousButtonClass: Ember.computed('previousDisabled',function(){
+  previousButtonClass: computed('previousDisabled',function(){
     return (this.get('previousDisabled') ? 'disabled' : '') ;
   }),
 
-  nextButtonClass: Ember.computed('nextDisabled',function(){
+  nextButtonClass: computed('nextDisabled',function(){
     return (this.get('nextDisabled') ? 'disabled' : '') ;
   }),
 

@@ -1,5 +1,7 @@
-import Ember from 'ember';
-const {computed, isEmpty, get} = Ember;
+import { A } from '@ember/array';
+import Component from '@ember/component';
+import { isEmpty } from '@ember/utils';
+import { get, computed } from '@ember/object';
 import layout from '../templates/data-sorter';
 
 function internalSorter(data, sortFields) {
@@ -47,7 +49,7 @@ function createSortField(fieldName) {
   return {fieldName: tokens[0], isAscending: isAscending};
 }
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   tagName: '',
 
@@ -55,7 +57,7 @@ export default Ember.Component.extend({
     this._super(...arguments);
 
     if (isEmpty(this.get('sortFields'))) {
-      this.set('sortFields', Ember.A());
+      this.set('sortFields', A());
     }
   },
 
@@ -70,7 +72,7 @@ export default Ember.Component.extend({
   }),
 
   internalSortFields: computed('sortFields.[]', function () {
-    let result = Ember.A();
+    let result = A();
 
     if (isEmpty(this.get('sortFields'))) {
       return result;

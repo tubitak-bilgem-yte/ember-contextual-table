@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { observer } from '@ember/object';
 import layout from '../templates/dt-filterable-column-base';
-const {observer} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   filterValueChanged:observer('filterValue', function (){

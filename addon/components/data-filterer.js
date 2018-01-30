@@ -1,7 +1,11 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import Component from '@ember/component';
+import { isEmpty } from '@ember/utils';
+import { get, computed } from '@ember/object';
 import layout from '../templates/data-filterer';
-import {diacriticsInsensitiveMatcher as defaultMatcher} from '../util/diactricts';
-const {computed, isEmpty, get} = Ember;
+import {
+  diacriticsInsensitiveMatcher as defaultMatcher
+} from '../util/diactricts';
 
 function createFieldFilter(fieldName, filter) {
   return {fieldName: fieldName, filter: filter};
@@ -28,7 +32,7 @@ function itemFilterer(item, filterFields) {
   return satisfiedFilters.length === filterFields.length;
 }
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   tagName:'',
 
@@ -36,7 +40,7 @@ export default Ember.Component.extend({
     this._super(...arguments);
 
     if (isEmpty(this.get('fieldFilters'))) {
-      this.set('fieldFilters', Ember.A());
+      this.set('fieldFilters', A());
     }
   },
 

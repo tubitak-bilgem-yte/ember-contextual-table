@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
+import { A } from '@ember/array';
+import $ from 'jquery';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -11,10 +13,10 @@ let chedjou = {name:'Aurélien', surname:'Chedjou', age:31, nationality:'Cameroo
 let players = [sneijder, podolski, muslera, selcuk, chedjou];
 
 function assertPlayer(assert,index,player) {
-  assert.equal(Ember.$(`tr:eq(${index})`).find("td:eq(1)").text().trim(), player['name']);
-  assert.equal(Ember.$(`tr:eq(${index})`).find("td:eq(2)").text().trim(), player['surname']);
-  assert.equal(Ember.$(`tr:eq(${index})`).find("td:eq(3)").text().trim(), player['age']);
-  assert.equal(Ember.$(`tr:eq(${index})`).find("td:eq(4)").text().trim(), player['nationality']);
+  assert.equal($(`tr:eq(${index})`).find("td:eq(1)").text().trim(), player['name']);
+  assert.equal($(`tr:eq(${index})`).find("td:eq(2)").text().trim(), player['surname']);
+  assert.equal($(`tr:eq(${index})`).find("td:eq(3)").text().trim(), player['age']);
+  assert.equal($(`tr:eq(${index})`).find("td:eq(4)").text().trim(), player['nationality']);
 }
 
 
@@ -128,7 +130,7 @@ test('clear selectedRows after data has changed', function(assert) {
   this.$("input[type='checkbox']:eq(2)").change();
   assert.equal(selectionCount, 2);
 
-  let newData = Ember.A();
+  let newData = A();
   newData.pushObjects(players);
   this.set('data', newData);
   assert.notOk(this.$("input[type='checkbox']:eq(0)").prop('checked'));
@@ -142,7 +144,7 @@ test('clear selectedRows after data has changed', function(assert) {
   this.$("input[type='checkbox']:eq(3)").change();
   assert.equal(selectionCount, 1);
 
-  Ember.run(()=> {
+  run(()=> {
     newData.clear();
     newData.pushObjects(players);
   });
@@ -208,7 +210,7 @@ test('selectedRows are managed from user of data-table', function(assert) {
   assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'));
 
 
-  let newData = Ember.A();
+  let newData = A();
   newData.pushObjects(players);
   this.set('data', newData);
   this.set('parentSelectedRows', []);
