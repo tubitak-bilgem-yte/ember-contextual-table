@@ -22,14 +22,16 @@ export default Component.extend({
   nextLabel: '>>',
 
   actions:{
-    previous:function(){
+    previous:function(e){
+      e.preventDefault();
       if (this.get('previousDisabled')) {
         return;
       }
 
       (this.get('previous')|| function(){})();
     },
-    next:function(){
+    next:function(e){
+      e.preventDefault();
       if (this.get('nextDisabled')) {
         return;
       }
