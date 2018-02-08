@@ -16,27 +16,26 @@
     {{/if}}
 {{/if}}
 <tbody>
-{{#each data as |row index|}}
-    <tr id={{concat rowIdPrefix '-' index}} class={{if (array-contains selectedRows row) 'contextual-table-selected-row contextual-table-row' 'contextual-table-row'}}  ondblclick={{action (if (array-contains selectedRows row) 'deselected' 'selected') row}}>
+{{#each wrappedData as |wrappedRow index|}}
+    <tr id={{concat rowIdPrefix '-' index}} class={{if wrappedRow.isSelected 'contextual-table-selected-row contextual-table-row' 'contextual-table-row'}}  ondblclick={{action (if wrappedRow.isSelected 'deselected' 'selected') wrappedRow}}>
       {{yield (hash
-        column=(component 'dt-column-cell' row=row rowIndex=index)
-        filterableColumn=(component 'dt-column-cell' row=row rowIndex=index)
-        selectionColumn=(component 'dt-selection-column' row=row rowIndex=index isRowSelected=(array-contains selectedRows row) rowSelected=(action 'selected' row) rowDeselected=(action 'deselected' row))
-        sortableColumn =(component 'dt-column-cell' row=row rowIndex=index)
-        extraRow=(component 'empty-component')
-        row=row
-        rowIndex=index
+                column=(component 'dt-column-cell' row=wrappedRow.row rowIndex=index)
+                filterableColumn=(component 'dt-column-cell' row=wrappedRow.row rowIndex=index)
+                selectionColumn=(component 'dt-selection-column' row=wrappedRow.row rowIndex=index isRowSelected=wrappedRow.isSelected rowSelected=(action 'selected' wrappedRow) rowDeselected=(action 'deselected' wrappedRow))
+                sortableColumn =(component 'dt-column-cell' row=wrappedRow.row rowIndex=index)
+                extraRow=(component 'empty-component')
+                row=wrappedRow.row
+                rowIndex=index
         )}}
     </tr>
-
     {{yield (hash
       column=(component 'empty-component')
       filterableColumn=(component 'empty-component')
       selectionColumn=(component 'empty-component')
       sortableColumn=(component 'empty-component')
-      extraRow=(component 'row-component' row=row rowIndex=index isRowSelected=(array-contains selectedRows row))
+      extraRow=(component 'row-component' row=wrappedRow.row rowIndex=index isRowSelected=wrappedRow.isSelected)
       rowIndex=index
-      row=row
+      row=wrappedRow.row
       )}}
 {{/each}}
 </tbody>
