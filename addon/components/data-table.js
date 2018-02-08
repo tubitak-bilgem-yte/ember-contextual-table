@@ -1,6 +1,6 @@
 import { A, isArray } from '@ember/array';
 import { computed, set } from '@ember/object';
-import { equal, setDiff, empty, map, filterBy } from '@ember/object/computed';
+import { equal, setDiff, empty, map } from '@ember/object/computed';
 import Component from '@ember/component';
 import layout from '../templates/data-table';
 
