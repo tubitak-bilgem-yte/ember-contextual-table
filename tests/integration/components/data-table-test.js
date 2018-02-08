@@ -180,10 +180,10 @@ test('selectedRows are managed from user of data-table', function(assert) {
 
   assert.equal(parentSelectedRows.length, 2);
 
-  this.$("input[type='checkbox']:eq(3)").prop('checked', true);
-  this.$("input[type='checkbox']:eq(3)").change();
+  this.$("input[type='checkbox']:eq(4)").prop('checked', true);
+  this.$("input[type='checkbox']:eq(4)").change();
   assert.equal(parentSelectedRows.length, 2);
-  assert.equal(resultOfSelection.length, 3);
+  assert.equal(resultOfSelection.length, 3,);
 
   this.$("input[type='checkbox']:eq(0)").prop('checked', false);
   this.$("input[type='checkbox']:eq(0)").change();
@@ -194,32 +194,32 @@ test('selectedRows are managed from user of data-table', function(assert) {
   assert.equal(resultOfSelection.length, players.length);
 
   this.set('parentSelectedRows', [players[1]]);
-  assert.notOk(this.$("input[type='checkbox']:eq(0)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(1)").prop('checked'));
-  assert.ok(this.$("input[type='checkbox']:eq(2)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(3)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(4)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(0)").prop('checked'), '1');
+  assert.notOk(this.$("input[type='checkbox']:eq(1)").prop('checked'), '2');
+  assert.ok(this.$("input[type='checkbox']:eq(2)").prop('checked'), '3');
+  assert.notOk(this.$("input[type='checkbox']:eq(3)").prop('checked'), '4');
+  assert.notOk(this.$("input[type='checkbox']:eq(4)").prop('checked'), '5');
+  assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'), '6');
 
   this.set('parentSelectedRows', [players[1], players[3]]);
-  assert.notOk(this.$("input[type='checkbox']:eq(0)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(1)").prop('checked'));
-  assert.ok(this.$("input[type='checkbox']:eq(2)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(3)").prop('checked'));
-  assert.ok(this.$("input[type='checkbox']:eq(4)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(0)").prop('checked'), '7');
+  assert.notOk(this.$("input[type='checkbox']:eq(1)").prop('checked'), '8');
+  assert.ok(this.$("input[type='checkbox']:eq(2)").prop('checked'), '9');
+  assert.notOk(this.$("input[type='checkbox']:eq(3)").prop('checked'), '10');
+  assert.ok(this.$("input[type='checkbox']:eq(4)").prop('checked'), '11');
+  assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'), '12');
 
 
   let newData = A();
   newData.pushObjects(players);
   this.set('data', newData);
   this.set('parentSelectedRows', []);
-  assert.notOk(this.$("input[type='checkbox']:eq(0)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(1)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(2)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(3)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(4)").prop('checked'));
-  assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'));
+  assert.notOk(this.$("input[type='checkbox']:eq(0)").prop('checked'), '13');
+  assert.notOk(this.$("input[type='checkbox']:eq(1)").prop('checked'), '14');
+  assert.notOk(this.$("input[type='checkbox']:eq(2)").prop('checked'), '15');
+  assert.notOk(this.$("input[type='checkbox']:eq(3)").prop('checked'), '16');
+  assert.notOk(this.$("input[type='checkbox']:eq(4)").prop('checked'), '17');
+  assert.notOk(this.$("input[type='checkbox']:eq(5)").prop('checked'), '18');
 });
 
 
@@ -292,7 +292,6 @@ test('custom row id prefix', function(assert) {
   assert.equal(this.$('#my-row-id-4>td:eq(0)').text().trim(), 'Aurélien');
 
 });
-
 
 
 

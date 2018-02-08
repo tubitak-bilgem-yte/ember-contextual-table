@@ -1,6 +1,6 @@
 import { A, isArray } from '@ember/array';
-import { computed } from '@ember/object';
-import { equal, setDiff, empty } from '@ember/object/computed';
+import { computed, set } from '@ember/object';
+import { equal, setDiff, empty, map } from '@ember/object/computed';
 import Component from '@ember/component';
 import layout from '../templates/data-table';
 
@@ -21,15 +21,31 @@ export default Component.extend({
 
   rowIdPrefix:'table-row-id',
 
-  selectedRows:computed('data.[]',{
+  wrappedData:map('data', function (item) {
+    return {row: item, isSelected:false}
+  }),
+
+
+  selectedRows:computed('wrappedData.@each.isSelected',{
     get(){
-      return A();
+      return this.get('wrappedData').filter((item)=>item.isSelected).map((item)=>item.row);
     },
     set(key, value){
       let arr = A();
       if(isArray(value)){
         arr.pushObjects(value);
       }
+
+      this.get('wrappedData').forEach((item)=>set(item, 'isSelected', false));
+
+      arr.forEach((item)=>{
+        let found = this.get('wrappedData').find((element)=>element.row===item);
+
+        if (found) {
+          set(found, 'isSelected', true);
+        }
+      });
+
       return arr;
     }
   }),
@@ -37,25 +53,25 @@ export default Component.extend({
   actions:{
     selected:function(row){
       if(this.get('selectionMode')==='single'){
-        this.get('selectedRows').clear();
+        this.get('wrappedData').forEach((item)=>set(item, 'isSelected', false));
       }
-      this.get('selectedRows').pushObject(row);
+
+      set(row, 'isSelected', true);
       this.get('selectionChanged')(this.get('selectedRows'));
     },
     deselected:function(row){
-      this.get('selectedRows').removeObject(row);
+      set(row, 'isSelected', false);
       this.get('selectionChanged')(this.get('selectedRows'));
     },
     selectAll:function(){
       if(this.get('selectionMode')==='single'){
-        return false;
+        return;
       }
-      this.get('selectedRows').clear();
-      this.get('selectedRows').pushObjects(this.get('data'));
+      this.get('wrappedData').forEach((item)=>set(item, 'isSelected', true));
       this.get('selectionChanged')(this.get('selectedRows'));
     },
     deselectAll:function(){
-      this.get('selectedRows').clear();
+      this.get('wrappedData').forEach((item)=>set(item, 'isSelected', false));
       this.get('selectionChanged')(this.get('selectedRows'));
     }
   }
