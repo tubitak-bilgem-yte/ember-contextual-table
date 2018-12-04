@@ -7,7 +7,6 @@
 [![devDependency Status](https://david-dm.org/tubitak-bilgem-yte/ember-contextual-table/dev-status.svg)](https://david-dm.org/tubitak-bilgem-yte/ember-contextual-table#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/tubitak-bilgem-yte/ember-contextual-table/badges/gpa.svg)](https://codeclimate.com/github/tubitak-bilgem-yte/ember-contextual-table)
 
-
 Ember Table as a Contextual Component
 
 ## Motivation
