@@ -61,7 +61,7 @@ export default Component.extend({
     }
   },
 
-  sortedData:computed('data', 'sortFields.[]', 'sorter', function() {
+  sortedData:computed('data.[]', 'sortFields.[]', 'sorter', function() {
     if (isEmpty(this.get('data'))) {
       return [];
     }
