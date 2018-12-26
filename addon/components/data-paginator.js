@@ -28,7 +28,11 @@ export default Component.extend({
 
     let start= currentPage * pageSize;
     let end = (currentPage +1) * pageSize;
-    return data.slice(start, end);
+    const paginatedData = data.slice(start, end);
+    if (!paginatedData.length) {
+      this.set('currentPage', 1)
+    }
+    return paginatedData
   }),
 
   fireDataRequested:function(){
