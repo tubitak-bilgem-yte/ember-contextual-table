@@ -1,5 +1,5 @@
 import { alias } from '@ember/object/computed';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import Component from '@ember/component';
 import layout from '../templates/data-paginator';
 
@@ -10,7 +10,7 @@ export default Component.extend({
   classNames:['contextual-data-paginator'],
 
   hasNext:computed('paginatedData.[]', 'pageSize', function(){
-     return this.get('paginatedData').length === this.get('pageSize');
+    return this.get('paginatedData').length === this.get('pageSize');
   }),
 
   offset:computed('pageSize','currentPage', function(){
@@ -21,6 +21,15 @@ export default Component.extend({
 
   limit:alias('pageSize'),
 
+  paginatedDataObserver: observer('paginatedData.[]', function () {
+    let paginatedData = this.get('paginatedData');
+    if (!paginatedData.length) {
+      if(this.get('currentPage') > 1){
+        this.decrementProperty('currentPage');
+      }
+    }
+  }),
+
   paginatedData:computed('data.[]', 'pageSize', 'currentPage', function(){
     let data = this.get('data'); //TODO : Ember.assert 'data' is not null/undefined
     let pageSize = this.get('pageSize');
@@ -28,11 +37,7 @@ export default Component.extend({
 
     let start= currentPage * pageSize;
     let end = (currentPage +1) * pageSize;
-    const paginatedData = data.slice(start, end);
-    if (!paginatedData.length) {
-      this.set('currentPage', 1)
-    }
-    return paginatedData
+    return data.slice(start, end);
   }),
 
   fireDataRequested:function(){
@@ -40,7 +45,7 @@ export default Component.extend({
     let limit = this.get('limit');
     let dataRequested = this.get('dataRequested');
     if(dataRequested){
-        dataRequested(offset, limit);
+      dataRequested(offset, limit);
     }
   },
 
