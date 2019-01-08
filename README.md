@@ -1,6 +1,7 @@
 # ember-contextual-table
 
 [![npm version](https://badge.fury.io/js/ember-contextual-table.svg)](http://badge.fury.io/js/ember-contextual-table)
+[![downloads](https://img.shields.io/npm/dm/ember-contextual-table.svg?style=flat-square)](https://img.shields.io/npm/dm/ember-contextual-table.svg?style=flat-square)
 [![Build Status](https://travis-ci.org/tubitak-bilgem-yte/ember-contextual-table.svg?branch=master)](https://travis-ci.org/tubitak-bilgem-yte/ember-contextual-table)
 [![Ember Observer Score](http://emberobserver.com/badges/ember-contextual-table.svg)](http://emberobserver.com/addons/ember-contextual-table)
 [![Dependency Status](https://david-dm.org/tubitak-bilgem-yte/ember-contextual-table.svg)](https://david-dm.org/tubitak-bilgem-yte/ember-contextual-table)
