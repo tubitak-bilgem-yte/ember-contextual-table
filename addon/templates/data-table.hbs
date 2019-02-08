@@ -17,7 +17,11 @@
 {{/if}}
 <tbody>
 {{#each wrappedData as |wrappedRow index|}}
-    <tr id={{concat rowIdPrefix '-' index}} class={{if wrappedRow.isSelected 'contextual-table-selected-row contextual-table-row' 'contextual-table-row'}}  ondblclick={{action (if wrappedRow.isSelected 'deselected' 'selected') wrappedRow}}>
+    <tr id={{concat rowIdPrefix '-' index}}
+          class={{if wrappedRow.isSelected 'contextual-table-selected-row contextual-table-row' 'contextual-table-row' }}
+          ondblclick={{action 'handleRowDoubleClick' wrappedRow}}
+          onclick={{action 'handleRowSingleClick' wrappedRow}}
+    >
       {{yield (hash
                 column=(component 'dt-column-cell' row=wrappedRow.row rowIndex=index)
                 filterableColumn=(component 'dt-column-cell' row=wrappedRow.row rowIndex=index)

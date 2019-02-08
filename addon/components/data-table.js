@@ -50,18 +50,26 @@ export default Component.extend({
     }
   }),
 
+  selectedFunction(row){
+    if(this.get('selectionMode')==='single'){
+      this.get('wrappedData').forEach((item)=>set(item, 'isSelected', false));
+    }
+
+    set(row, 'isSelected', true);
+    this.get('selectionChanged')(this.get('selectedRows'));
+  },
+
+  deselectedFunction(row){
+    set(row, 'isSelected', false);
+    this.get('selectionChanged')(this.get('selectedRows'));
+  },
+
   actions:{
     selected:function(row){
-      if(this.get('selectionMode')==='single'){
-        this.get('wrappedData').forEach((item)=>set(item, 'isSelected', false));
-      }
-
-      set(row, 'isSelected', true);
-      this.get('selectionChanged')(this.get('selectedRows'));
+      this.selectedFunction(row);
     },
     deselected:function(row){
-      set(row, 'isSelected', false);
-      this.get('selectionChanged')(this.get('selectedRows'));
+      this.deselectedFunction(row);
     },
     selectAll:function(){
       if(this.get('selectionMode')==='single'){
@@ -73,6 +81,24 @@ export default Component.extend({
     deselectAll:function(){
       this.get('wrappedData').forEach((item)=>set(item, 'isSelected', false));
       this.get('selectionChanged')(this.get('selectedRows'));
-    }
+    },
+    handleRowDoubleClick(row){
+      if(this.get('onRowDoubleClick')){
+        this.get('onRowDoubleClick')(row.row);
+      }
+      else{
+        if(row.isSelected){
+          this.deselectedFunction(row);
+        }
+        else{
+          this.selectedFunction(row);
+        }
+      }
+    },
+    handleRowSingleClick(row){
+      if(this.get('onRowSingleClick')){
+        this.get('onRowSingleClick')(row.row);
+      }
+    },
   }
 });
