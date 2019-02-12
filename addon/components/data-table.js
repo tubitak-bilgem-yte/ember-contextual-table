@@ -2,6 +2,8 @@ import { A, isArray } from '@ember/array';
 import { computed, set } from '@ember/object';
 import { equal, setDiff, empty, map } from '@ember/object/computed';
 import Component from '@ember/component';
+import { guidFor } from '@ember/object/internals';
+import { isBlank } from '@ember/utils';
 import layout from '../templates/data-table';
 
 export default Component.extend({
@@ -19,7 +21,17 @@ export default Component.extend({
   selectionChanged:function(){},
   classNames:['contextual-data-table'],
 
-  rowIdPrefix:'table-row-id',
+  rowIdPrefixWithTableElementId: computed('elementId', 'rowIdPrefix', function(){
+    let elementId = this.get('elementId');
+    if(isBlank(elementId)){
+      elementId = guidFor(this);
+    }
+    let rowIdPrefix = this.get('rowIdPrefix');
+    if(isBlank(rowIdPrefix)){
+      rowIdPrefix = '-table-row-id';
+    }
+    return elementId + rowIdPrefix;
+  }),
 
   wrappedData:map('data', function (item) {
     return {row: item, isSelected:false}

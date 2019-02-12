@@ -17,7 +17,7 @@
 {{/if}}
 <tbody>
 {{#each wrappedData as |wrappedRow index|}}
-    <tr id={{concat rowIdPrefix '-' index}}
+    <tr id={{concat rowIdPrefixWithTableElementId '-' index}}
           class={{if wrappedRow.isSelected 'contextual-table-selected-row contextual-table-row' 'contextual-table-row' }}
           ondblclick={{action 'handleRowDoubleClick' wrappedRow}}
           onclick={{action 'handleRowSingleClick' wrappedRow}}
