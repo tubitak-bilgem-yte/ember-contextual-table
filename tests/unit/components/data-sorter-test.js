@@ -1,9 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import util from '../../util';
 
-moduleForComponent('data-sorter', 'Unit | Component | data sorter', {
-  unit: true
-});
+moduleForComponent('data-sorter', 'Unit | Component | data sorter');
 
 test('Sorting by default returns in data itself', function(assert) {
   let component = this.subject({data: util.data});

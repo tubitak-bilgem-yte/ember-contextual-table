@@ -1,9 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import util from '../../util';
 
-moduleForComponent('data-filterer', 'Unit | Component | data filterer', {
-  unit: true
-});
+moduleForComponent('data-filterer', 'Unit | Component | data filterer');
 
 test('Filtering by default returns in data itself', function(assert) {
   let component = this.subject({data: util.data});
