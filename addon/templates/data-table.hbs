@@ -8,7 +8,7 @@
           (hash
             column=(component "dt-column-header")
             filterableColumn=(component "dt-filterable-column-header")
-            filterAndSortableColumn=(component "dt-filterable-column-header")
+            filterAndSortableColumn=(component "dt-filter-and-sortable-column-header")
             selectionColumn=(component (if singleSelection "dt-column-header" "dt-selection-column-header") isSelected=isAllSelected selected=(action "selectAll") deselected=(action "deselectAll"))
             sortableColumn=(component "dt-sortable-column-header")
             extraRow=(component "empty-component")
@@ -67,7 +67,7 @@
           (hash
             column=(component "dt-column-footer")
             filterableColumn=(component "dt-filterable-column-footer")
-            filterAndSortableColumn=(component "dt-filterable-column-footer")
+            filterAndSortableColumn=(component "dt-filter-and-sortable-column-footer")
             selectionColumn=(component (if singleSelection "dt-column-footer" "dt-selection-column-footer") isSelected=isAllSelected selected=(action "selectAll") deselected=(action "deselectAll"))
             sortableColumn =(component "dt-sortable-column-footer")
             extraRow=(component "empty-component")
