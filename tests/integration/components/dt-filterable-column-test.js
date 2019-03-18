@@ -6,6 +6,8 @@ import hbs from 'htmlbars-inline-precompile';
 const COMPONENTS = [
   'dt-filterable-column-header',
   'dt-filterable-column-footer',
+  'dt-filter-and-sortable-column-header',
+  'dt-filter-and-sortable-column-footer',
 ];
 
 module('Integration | Component | dt-filterable-column', function(hooks) {
@@ -71,14 +73,14 @@ module('Integration | Component | dt-filterable-column', function(hooks) {
           assert.dom('th').hasText('true-', 'Yielded header should have been true and footer should have been undefined');
         });
 
-        test('it yields header true but defaultHeader=true', async function(assert) {
+        test('it renders default header if defaultHeader=true even if used in block mode', async function(assert) {
           await render(hbs`
             {{#component comp defaultHeader=true as |fc|}}
               This is some text for header
             {{/component}}
           `);
 
-          assert.dom('th').hasText('', 'With defaultHeader=true parameter, header should be default header.');
+          assert.dom('th').doesNotContainText('some text', 'With defaultHeader=true parameter, header should be default header.');
           assert.dom('th').exists({ count: 1 }, 'There should be one input');
         })
       }

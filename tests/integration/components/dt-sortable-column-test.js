@@ -6,11 +6,9 @@ import hbs from 'htmlbars-inline-precompile';
 const COMPONENTS = [
   'dt-sortable-column-header',
   'dt-sortable-column-footer',
+  'dt-filter-and-sortable-column-header',
+  'dt-filter-and-sortable-column-footer',
 ];
-
-function assertText($, assert, expected, message) {
-  assert.equal($.text().trim().replace(/\s/g, ''), expected, message);
-}
 
 module('Integration | Component | dt-sortable-column', function(hooks) {
   setupRenderingTest(hooks);
@@ -42,22 +40,28 @@ module('Integration | Component | dt-sortable-column', function(hooks) {
         });
 
         await render(hbs`{{component comp name=name propertyName=propertyName sortinformationupdated=(action myAction)}}`);
-        assertText(this.$(), assert, 'Sortable●', 'None of up and down arrows are visible initially');
+        assert.dom(component.includes('header') ? 'th' : 'td')
+          .hasTextContaining('●', 'None of up and down arrows are visible initially');
 
         await click('span');
-        assertText(this.$(), assert, 'Sortable▼', 'Only down arrow is visible when isAscending is true');
+        assert.dom(component.includes('header') ? 'th' : 'td')
+          .hasTextContaining('▼', 'Only down arrow is visible when isAscending is true');
 
         await click('span');
-        assertText(this.$(), assert, 'Sortable▲', 'Only up arrow is visible when isAscending is false');
+        assert.dom(component.includes('header') ? 'th' : 'td')
+          .hasTextContaining('▲', 'Only up arrow is visible when isAscending is false');
 
         await click('span');
-        assertText(this.$(), assert, 'Sortable●', 'None of up and down arrows are visible at 3rd click');
+        assert.dom(component.includes('header') ? 'th' : 'td')
+          .hasTextContaining('●', 'None of up and down arrows are visible at 3rd click');
 
         await click('span');
-        assertText(this.$(), assert, 'Sortable▼', 'Only down arrow is visible when isAscending is true after 4th click');
+        assert.dom(component.includes('header') ? 'th' : 'td')
+          .hasTextContaining('▼', 'Only down arrow is visible when isAscending is true after 4th click');
 
         await click('span');
-        assertText(this.$(), assert, 'Sortable▲', 'Only down arrow is visible when isAscending is false after 5th click');
+        assert.dom(component.includes('header') ? 'th' : 'td')
+          .hasTextContaining('▲', 'Only down arrow is visible when isAscending is false after 5th click');
       });
 
       test('it renders in block form and event is fired with outsider buttons', async function(assert) {
@@ -91,17 +95,21 @@ module('Integration | Component | dt-sortable-column', function(hooks) {
 
         // Does not fire event that was fired by default
         await click(component.includes('header') ? 'th' : 'td');
-        assertText(this.$(), assert, '', 'Following should have hold: Yielded header-undefined, isAscending undefined, yielded footer-true');
+        assert.dom(component.includes('header') ? 'th' : 'td')
+            .hasText('', 'Following should have hold: Yielded header-undefined, isAscending undefined, yielded footer-true');
 
         // Button clicks fire event
         await click('#button1');
-        assertText(this.$(), assert, 'true', 'Following should have hold: Yielded header-undefined, isAscending true, yielded footer-true');
+        assert.dom(component.includes('header') ? 'th' : 'td')
+            .hasText('true', 'Following should have hold: Yielded header-undefined, isAscending true, yielded footer-true');
 
         await click('#button2');
-        assertText(this.$(), assert, '', 'Following should have hold: Yielded header-undefined, isAscending undefined, yielded footer-true');
+        assert.dom(component.includes('header') ? 'th' : 'td')
+            .hasText('', 'Following should have hold: Yielded header-undefined, isAscending undefined, yielded footer-true');
 
         await click('#button3');
-        assertText(this.$(), assert, 'false', 'Following should have hold: Yielded header-undefined, isAscending false, yielded footer-true');
+        assert.dom(component.includes('header') ? 'th' : 'td')
+            .hasText('false', 'Following should have hold: Yielded header-undefined, isAscending false, yielded footer-true');
       });
 
       test('it yields header and footer', async function(assert) {
@@ -115,15 +123,15 @@ module('Integration | Component | dt-sortable-column', function(hooks) {
       });
 
       if (component.includes('header')) {
-        test('it renders in block form with defaultHeader=true', async function(assert) {
+        test('it renders default header even if used in block form with defaultHeader=true', async function(assert) {
           await render(hbs`
-            {{#component comp name=name propertyName='theNameOfProperty' defaultHeader=true  as |sc|}}
-              {{sc.header}}-{{isAscending}}-{{sc.footer}}
+            {{#component comp defaultHeader=true  as |sc|}}
+              some text
             {{/component}}
           `);
 
-          // Does not fire event that was fired by default
-          assertText(this.$(), assert, 'Sortable●', 'With defaultHeader=true parameter, header should be default header.');
+          assert.dom(component.includes('header') ? 'th' : 'td').hasTextContaining('●');
+          assert.dom(component.includes('header') ? 'th' : 'td').doesNotContainText('some text');
         });
       }
     });
