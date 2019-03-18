@@ -8,14 +8,14 @@
     )
   }}
 {{else}}
-  <div onclick={{action "onclick"}} role="button">
-    {{input value=filterValue placeholder=placeholder}}
+  {{input value=filterValue placeholder=placeholder}}
+  <span onclick={{action "onclick"}} role="button">
     {{#if upArrowVisible}}
-      <span>▲</span>
+      ▲
     {{else if downArrowVisible}}
-      <span>▼</span>
+      ▼
     {{else}}
-      <span>●</span>
+      ●
     {{/if}}
-  </div>
+  </span>
 {{/if}}
