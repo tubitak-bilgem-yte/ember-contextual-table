@@ -1,62 +1,75 @@
 {{#if showHeader}}
-    {{#if customHeader}}
-        {{component customHeader isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll')}}
-    {{else}}
-        <thead>
-        <tr class="contextual-table-header-row">
-            {{yield (hash
-              column=(component 'dt-column-header')
-              filterableColumn=(component 'dt-filterable-column-header')
-              selectionColumn=(component (if singleSelection 'dt-column-header' 'dt-selection-column-header') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
-              sortableColumn=(component 'dt-sortable-column-header')
-              extraRow=(component 'empty-component')
-              )}}
-        </tr>
-        </thead>
-    {{/if}}
+  {{#if customHeader}}
+    {{component customHeader isSelected=isAllSelected selected=(action "selectAll") deselected=(action "deselectAll")}}
+  {{else}}
+    <thead>
+      <tr class="contextual-table-header-row">
+        {{yield
+          (hash
+            column=(component "dt-column-header")
+            filterableColumn=(component "dt-filterable-column-header")
+            selectionColumn=(component (if singleSelection "dt-column-header" "dt-selection-column-header") isSelected=isAllSelected selected=(action "selectAll") deselected=(action "deselectAll"))
+            sortableColumn=(component "dt-sortable-column-header")
+            extraRow=(component "empty-component")
+          )
+        }}
+      </tr>
+    </thead>
+  {{/if}}
 {{/if}}
+
 <tbody>
-{{#each wrappedData as |wrappedRow index|}}
-    <tr id={{concat rowIdPrefixWithTableElementId '-' index}}
-          class={{if wrappedRow.isSelected 'contextual-table-selected-row contextual-table-row' 'contextual-table-row' }}
-          ondblclick={{action 'handleRowDoubleClick' wrappedRow}}
-          onclick={{action 'handleRowSingleClick' wrappedRow}}
+  {{#each wrappedData as |wrappedRow index|}}
+    {{! template-lint-disable no-invalid-interactive }}
+    <tr
+      id={{concat rowIdPrefixWithTableElementId "-" index}}
+      class={{if wrappedRow.isSelected "contextual-table-selected-row contextual-table-row" "contextual-table-row" }}
+      ondblclick={{action "handleRowDoubleClick" wrappedRow}}
+      onclick={{action "handleRowSingleClick" wrappedRow}}
     >
-      {{yield (hash
-                column=(component 'dt-column-cell' row=wrappedRow.row rowIndex=index)
-                filterableColumn=(component 'dt-column-cell' row=wrappedRow.row rowIndex=index)
-                selectionColumn=(component 'dt-selection-column' row=wrappedRow.row rowIndex=index isRowSelected=wrappedRow.isSelected rowSelected=(action 'selected' wrappedRow) rowDeselected=(action 'deselected' wrappedRow))
-                sortableColumn =(component 'dt-column-cell' row=wrappedRow.row rowIndex=index)
-                extraRow=(component 'empty-component')
-                row=wrappedRow.row
-                rowIndex=index
-        )}}
+      {{! template-lint-enable no-invalid-interactive }}
+      {{yield
+        (hash
+          column=(component "dt-column-cell" row=wrappedRow.row rowIndex=index)
+          filterableColumn=(component "dt-column-cell" row=wrappedRow.row rowIndex=index)
+          selectionColumn=(component "dt-selection-column" row=wrappedRow.row rowIndex=index isRowSelected=wrappedRow.isSelected rowSelected=(action "selected" wrappedRow) rowDeselected=(action "deselected" wrappedRow))
+          sortableColumn =(component "dt-column-cell" row=wrappedRow.row rowIndex=index)
+          extraRow=(component "empty-component")
+          row=wrappedRow.row
+          rowIndex=index
+        )
+      }}
     </tr>
-    {{yield (hash
-      column=(component 'empty-component')
-      filterableColumn=(component 'empty-component')
-      selectionColumn=(component 'empty-component')
-      sortableColumn=(component 'empty-component')
-      extraRow=(component 'row-component' row=wrappedRow.row rowIndex=index isRowSelected=wrappedRow.isSelected)
-      rowIndex=index
-      row=wrappedRow.row
-      )}}
-{{/each}}
+    {{yield
+      (hash
+        column=(component "empty-component")
+        filterableColumn=(component "empty-component")
+        selectionColumn=(component "empty-component")
+        sortableColumn=(component "empty-component")
+        extraRow=(component "row-component" row=wrappedRow.row rowIndex=index isRowSelected=wrappedRow.isSelected)
+        rowIndex=index
+        row=wrappedRow.row
+      )
+    }}
+  {{/each}}
 </tbody>
+
 {{#if showFooter}}
-    {{#if customFooter}}
-        {{component customFooter isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll')}}
-    {{else}}
-        <tfoot>
-        <tr class="contextual-table-footer-row">
-            {{yield (hash
-              column=(component 'dt-column-footer')
-              filterableColumn=(component 'dt-filterable-column-footer')
-              selectionColumn=(component (if singleSelection 'dt-column-footer' 'dt-selection-column-footer') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
-              sortableColumn =(component 'dt-sortable-column-footer')
-              extraRow=(component 'empty-component')
-              )}}
-        </tr>
-        </tfoot>
-    {{/if}}
+  {{#if customFooter}}
+    {{component customFooter isSelected=isAllSelected selected=(action "selectAll") deselected=(action "deselectAll")}}
+  {{else}}
+    <tfoot>
+      <tr class="contextual-table-footer-row">
+        {{yield
+          (hash
+            column=(component "dt-column-footer")
+            filterableColumn=(component "dt-filterable-column-footer")
+            selectionColumn=(component (if singleSelection "dt-column-footer" "dt-selection-column-footer") isSelected=isAllSelected selected=(action "selectAll") deselected=(action "deselectAll"))
+            sortableColumn =(component "dt-sortable-column-footer")
+            extraRow=(component "empty-component")
+          )
+        }}
+      </tr>
+    </tfoot>
+  {{/if}}
 {{/if}}
