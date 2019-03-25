@@ -1,0 +1,21 @@
+{{#if (if hasBlock (if defaultHeader false true) false)}}
+  {{yield
+    (hash
+      onfilterupdate=(action "onfilterupdate")
+      onsortinfoupdate=(action "onsortinfoupdate")
+      footer=(readonly footer)
+      header=(readonly header)
+    )
+  }}
+{{else}}
+  {{input value=filterValue placeholder=placeholder}}
+  <span onclick={{action "onclick"}} role="button">
+    {{#if upArrowVisible}}
+      ▲
+    {{else if downArrowVisible}}
+      ▼
+    {{else}}
+      ●
+    {{/if}}
+  </span>
+{{/if}}

@@ -1,6 +1,7 @@
-import SortableColumn from './dt-sortable-column-base';
+import Component from '@ember/component';
+import SortableColumn from '../mixins/sortable-column';
 
-export default SortableColumn.extend({
+export default Component.extend(SortableColumn, {
   tagName:'td',
   footer:true,
   classNames:['contextual-sortable-footer-cell']

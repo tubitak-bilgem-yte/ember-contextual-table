@@ -1,6 +1,7 @@
-import FilterableColumn from './dt-filterable-column-base';
+import Component from '@ember/component';
+import FilterableColumn from '../mixins/filterable-column';
 
-export default FilterableColumn.extend({
+export default Component.extend(FilterableColumn, {
   tagName:'td',
   footer: true,
   classNames:['contextual-filterable-footer-cell']

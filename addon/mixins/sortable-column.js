@@ -1,9 +1,10 @@
-import Component from '@ember/component';
+import Mixin from '@ember/object/mixin';
 import { computed } from '@ember/object';
-import layout from '../templates/dt-sortable-column-base';
+import layout from '../templates/dt-sortable-column';
 
-export default Component.extend({
+export default Mixin.create({
   layout,
+
   upArrowVisible: computed('isAscending', function () {
     return this.get('isAscending') === false;
   }),
