@@ -1,0 +1,14 @@
+<!-- //BEGIN-SNIPPET sortable-position-header -->
+Sorting Enabled: {{input type='checkbox' change=(action 'toggleSorting' value='target.checked') checked=(readonly sortingEnabled)}}
+<br>
+Sorting Mode:
+{{#power-select
+  disabled=sortingDisabled
+  selected=sortingMode
+  options=sortingModes
+  onChange=(action 'changeSortingMode')
+as |sortingMode|
+}}
+  {{sortingMode}}
+{{/power-select}}
+<!-- // END-SNIPPET -->

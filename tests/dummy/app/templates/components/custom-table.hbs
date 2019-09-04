@@ -1,0 +1,29 @@
+<!-- //BEGIN-SNIPPET custom-table -->
+{{#data-table data=data selectionMode='multi' classNames=tableClassNames as |t|}}
+    {{t.selectionColumn}}
+    {{#t.selectionColumn as |col|}}
+        {{#if col.header}}
+            is Selected?
+        {{/if}}
+        {{#if col.body}}
+            <button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
+                {{action col.change (if col.isRowSelected false true)}} value={{col.isRowSelected}}>
+                {{if col.isRowSelected 'Selected' 'Not Selected'}}
+            </button>
+        {{/if}}
+    {{/t.selectionColumn}}
+    {{t.column propertyName='name' name='Name'}}
+    {{t.column propertyName='surname' name='Surname'}}
+    {{#t.column as |col|}}
+      {{#if col.header}}
+        <span style='text-decoration: underline overline; color:darkred'>Team</span>
+      {{/if}}
+      {{#if col.body}}
+        <img src="{{rootURL}}/assets/images/{{col.row.team}}.png" style="width:32px;height:32px;">
+      {{/if}}
+    {{/t.column}}
+    {{#t.column name='Row Index' defaultHeader=true as |col|}}
+        {{col.rowIndex}}
+    {{/t.column}}
+{{/data-table}}
+<!-- // END-SNIPPET -->

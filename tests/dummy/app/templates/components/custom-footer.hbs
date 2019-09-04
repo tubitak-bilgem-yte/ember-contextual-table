@@ -1,0 +1,19 @@
+<!-- //BEGIN-SNIPPET custom-footer -->
+<tr>
+  <td>
+    <button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
+      onclick={{action 'buttonClicked' (if isSelected false true)}}>
+      {{if isSelected 'Unselect All' 'Select All'}}
+    </button>
+  </td>
+  <td></td>
+  <td></td>
+  <td style="text-align: center; color: orangered">Avarage age is: {{avgAge}}</td>
+  <td></td>
+</tr>
+<tr>
+  <td colspan="5" style="text-align: center; color: #00b0e8" scope='colgroup'>
+      This is an illustration of a custom footer!
+  </td>
+</tr>
+<!-- // END-SNIPPET -->

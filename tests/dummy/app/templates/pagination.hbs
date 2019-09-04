@@ -1,0 +1,59 @@
+<h3>Paginated Table</h3>
+<p>
+  Pagination is an inevitable feature of any table component. As developers of this addon what we did not like about most
+  of the existing pagination implementation is that it is mostly presented as one of the core features of table; hence most
+  table implementations contain some component named pagination-table that extends from a base table implementation. We
+  believe this is wrong way to go; since this is an obvious violation of <a href="https://en.wikipedia.org/wiki/Composition_over_inheritance">
+  favoring composition over inheritance</a>. Here is our motivation:
+</p>
+<p>
+  One and only responsibility of a table should be displaying data in a tabular format along with support for selection of
+  rows (even the last one is open to discussion). Any other feature such as sorting, filtering, pagination should be handled
+  by some other component, module, or whatever you like to call. The reason is that; we might consider replacing that specific
+  component with some other implementation or something other than a table might also require pagination. Hence we decided
+  to implement not only pagination but also sorting and filtering as a wrapper (extension) to the existing table instead
+  of coding relevant implementation directly within the table component itself.
+</p>
+<p>
+  See the example below as an illustration of the discussion summarized above. <code>data-table</code> definition is wrapped
+  within <code>data-paginator</code> which has the responsibility to paginate data. <code>data-table</code>'s data attribute
+  is now assigned <code>data</code> attribute of yielded json object (<code>p</code> in the example) from <code>data-paginator</code>
+  as opposed to pure <code>data</code>, which is now assigned to <code>data</code> attribute of <code>data-paginator</code>.
+  You can see that <code>data-table</code> definition in this example is exactly the same that is used in Selectable Table
+  illustrated in {{navigation-menu-item text="Basic Usage" target="basic-usage"}}.
+</p>
+{{#generic-demo-page name='Paginated Table' files='paginated-table.js,paginated-table.hbs'}}
+  {{paginated-table data=model}}
+{{/generic-demo-page}}
+<p>
+  Right under the table definition, there exists a <code>pager-component</code> definition that is responsible to show next
+  and previous buttons along with the current page that is being displayed. You will notice that <code>pager-component</code>'s
+  <code>next</code>, <code>previous</code>, <code>currentPage</code>, and <code>nextDisabled</code> attributes are assigned
+  corresponding attributes from the yielded object <code>p</code> of <code>data-paginator</code>. <code>next</code> and
+  <code>previous</code> are actions to trigger page change and updating of data passed to <code>data-table</code> and
+  <code>hasNext</code> is a boolean to determine whether or not there are more data to slice.
+</p>
+<p>
+  What is good about the above example is that it shows you how much power as a developer you have to do whatever you like
+  about pagination with the table. You did not like the <code>pager-component</code> that is provided; well that is not
+  a big deal. Just write your our own pager component (that performs paging via scrolling for instance) and use yielded
+  attributes and pagination will still work. You did not like <code>data-paginator</code>, that is still OK. Just write a
+  wrapper of your own for the table.
+</p>
+<hr>
+<h3>Remote Calling Paginated Table</h3>
+<p>
+  <code>data-paginator</code> is handy when you have whole data in your hands to paginate. However, most of the time you
+  need to make remote calls to some server to fetch the data you would like to display. In such a case, you need to handle
+  pagination by yourself. Below is an example to illustrate such a case.
+</p>
+<p>
+  In this example, emberjs github repo's event types are fetched and displayed in the table. We used <code>pager-component</code>
+  to handle next, back button clicks and display the current page number, yet you can put a custom pager if you like. In
+  fact the code snippets below contain nothing special. The table definition is just as simple as it is in previous examples.
+  You just need to wrap and feed <code>data-table</code> the way you like. This example is here just to illustrate a small
+  working example of what you should do to modify the table by yourself.
+</p>
+{{#generic-demo-page name='Remote Calling Paginated Table' files='remote-calling-paginated-table.js,remote-calling-paginated-table.hbs'}}
+  {{remote-calling-paginated-table}}
+{{/generic-demo-page}}

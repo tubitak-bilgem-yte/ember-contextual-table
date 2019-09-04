@@ -1,0 +1,15 @@
+<!-- //BEGIN-SNIPPET team-filter-component -->
+<div style="width: 360px;">
+  {{#power-select-multiple
+    options=teams
+    selected=selectedTeams
+    placeholder="Select Teams..."
+    searchField="name"
+    selectedItemComponent="selected-team-component"
+    onChange=(action 'teamSelectionChanged')
+  as |team|
+  }}
+    <img src="{{rootURL}}/assets/images/{{team.shortName}}.png" style="width:32px;height:32px;"> {{team.name}}
+  {{/power-select-multiple}}
+</div>
+<!-- // END-SNIPPET -->

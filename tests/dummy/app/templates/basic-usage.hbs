@@ -1,0 +1,31 @@
+<h3>Simple Table</h3>
+<p>
+  Basic usage is quite simple. All you need to do is pass in <code>data</code> attribute of <code>data-table</code> and
+  declare your columns via using yielded information from the <code>data-table</code>. <code>propertyName</code> of each column
+  definition extracts the relevant information from the <code>data</code> provided and writes it to the corresponding
+  table cell. <code>name</code> property of a column determines the header text. See the code sample below to get started
+  using ember-contextual-table immediately :)
+</p>
+{{#generic-demo-page name='Simple Table' files='simple-table.js,simple-table.hbs'}}
+  {{simple-table data=model}}
+{{/generic-demo-page}}
+<hr>
+<h3>Selectable Table</h3>
+<p>
+  A table without selection capability is of hardly any use. ember-contextual-table provides selection as an internal
+  but extendible feature. All you need to do is to declare a <code>selectionColumn</code>. Of course, you would typically
+  would want to be notified about selection changes. In order to achieve that; you need to handle <code>selectionChanged</code>
+  event that sends you list of columns (an empty list in case no row is selected) just selected. The example provided
+  below just alerts the number of selected rows; but you would of course do sth. more useful such as enabling/disabling
+  some buttons wrt. selected item count; sending the selected items to server after a button submission, etc.
+</p>
+{{#generic-demo-page name='Selectable Table' files='selectable-table.js,selectable-table.hbs'}}
+  {{selectable-table data=model}}
+{{/generic-demo-page}}
+<p>
+  <code>data-table</code> supports two modes of selection: <i>single</i> and <i>multi</i>. If you pass the <code>selectionMode</code>
+  attribute as <i>"single"</i>; then the selection mode will turn to single and only a single item from the table should
+  be selected at any time; any values other than <i>"single"</i> will make the table work in multiple selection mode as in
+  the example. What if you want the selection column to hide and appear conditionally? Well; just wrap the column definition
+  within an if helper as you would do for anything.
+</p>

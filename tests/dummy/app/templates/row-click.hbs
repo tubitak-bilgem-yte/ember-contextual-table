@@ -1,0 +1,13 @@
+<h3>Row Click Handling</h3>
+<p>
+  <b>ember-contextual-table</b> handles click and double click events on rows.
+  You can use <i>onRowDoubleClick</i> and <i>onRowSingleClick</i> action params for handling these events.
+  By default, row select/deselect action is triggered when row is double clicked.
+</p>
+<p>
+  The example below displays handling of these actions.
+  Click or double click on rows to increase the number of click and double click events.
+</p>
+{{#generic-demo-page name='Row Click Handling' files='row-click-table.js,row-click-table.hbs'}}
+  {{row-click-table data=model}}
+{{/generic-demo-page}}

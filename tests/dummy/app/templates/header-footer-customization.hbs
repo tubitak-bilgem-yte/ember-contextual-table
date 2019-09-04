@@ -1,0 +1,55 @@
+<h3>Custom Footer Table</h3>
+<p>
+  Examples in the previous section already covered some sort of header customization; we will focus mostly on footer customization
+  in this section. To start with; you need to enable footer as opposed to header (which is enabled by default). In order
+  to do so; you need to set <code>showFooter</code> attribute of <code>data-table</code> to true. Default behaviour of a
+  footer of a column is simply to do nothing (Check out the example for the original selection column, name and surname
+  columns).
+</p>
+<p>
+  In order to put some content to the footer of a specific column; you need to check for <code>footer</code> property of
+  yielded object (just like we did for <code>header</code> and <code>body</code> in the previous section); <code>col</code>
+  in the example for both custom selection, team, and age columns. Within a selection column; object yielded (<code>col</code>
+  for our case) contains a property called <code>isSelected</code> for the footer part; so that you know whether or not
+  all the columns are selected. You can of course check out {{navigation-menu-item text="API" target="api-reference"}}
+  for more information.
+</p>
+{{#generic-demo-page name='Custom Footer Table' files='custom-footer-table.js,custom-footer-table.hbs'}}
+  {{custom-footer-table data=model}}
+{{/generic-demo-page}}
+<p>
+  Footers in a table are generally used for displaying aggregate values such as sum, avg, etc. We believe you will heavily
+  depend on computed properties to derive some useful aggregate related with whole data or just the selected ones. In our
+  example; we preferred to display sum of the ages of selected rows and number of distinct teams among selected rows.
+</p>
+<hr>
+<h3>Custom Header Footer Table</h3>
+<p>
+  You would prefer to take full control in managing header and footer of your table due to some requirements such as you
+  would want more customization such as column grouping. You would pass in your very own components for header and footer
+  of your table via using <code>customHeader</code> and <code>customFooter</code> properties of <code>data-table</code>.
+  See the example below to learn about how to pass your very own components to the table as header and footer. Note that
+  if you use custom header and footer like this; you no longer need to check for <code>header</code>, <code>body</code>,
+  and <code>footer</code> within your column definitions; because what you write will go directly to the body of the table.
+  Moreover, <code>name</code> property of columns you are to provide will simply be ignored since a custom header is being
+  rendered.
+</p>
+{{#generic-demo-page name='Custom Header-Footer Table'
+                     files='custom-header-footer-table.js,custom-header-footer-table.hbs,custom-header.js,custom-header.hbs,custom-footer.js,custom-footer.hbs'}}
+  {{custom-header-footer-table data=model}}
+{{/generic-demo-page}}
+<p>
+  The tricky part about the example above is related with the fact that selecting and unselecting all rows with checkbox
+  click in the selection column header or button click in the selection column footer works. How does that happen? If you
+  look at the source code of <code>custom-header.js</code> and <code>custom-footer.js</code> you will see that either a
+  <code>selected</code> or <code>deselected</code> event is being triggered with respect to the current state. These two
+  actions are passed to your custom header and footer components via <code>data-table</code> in order to enable you to implement
+  select/unselect all feature. Moreover, you will also notice both in <code>custom-header.hbs</code> and <code>custom-footer.hbs</code>
+  a property named <code>isSelected</code> is being used. This property is also passed by <code>data-table</code> to indicate
+  whether or not all rows are currently selected.
+</p>
+<p>
+  We believe, quite a lot of table customization examples are provided up until now. If you believe a more detailed example
+  is needed or documentation should be improved please feel free to open issues from or directly contribute to our
+  <a href="https://github.com/tubitak-bilgem-yte/ember-contextual-table-demo">github page</a>.
+</p>

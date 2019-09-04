@@ -1,0 +1,11 @@
+<!-- //BEGIN-SNIPPET filtered-table -->
+{{#data-filterer data=data as |df|}}
+  {{#data-table data=df.data selectionMode='multi' selectionChanged=(action 'selectionChanged') classNames=tableClassNames as |t|}}
+    {{t.selectionColumn}}
+    {{t.filterableColumn propertyName='name' placeholder='Name' filterinformationupdated=(action df.onfilterfieldupdated)}}
+    {{t.column propertyName='surname' name='Surname'}}
+    {{t.column propertyName='position' name='Position'}}
+    {{t.column propertyName='team' name='Team'}}
+  {{/data-table}}
+{{/data-filterer}}
+<!-- // END-SNIPPET -->

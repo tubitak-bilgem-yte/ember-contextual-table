@@ -1,0 +1,18 @@
+<!-- //BEGIN-SNIPPET advanced-filtered-table -->
+{{#data-filterer data=data filterer=customFilterer as |df|}}
+  {{#data-table data=df.data selectionMode='multi' selectionChanged=(action 'selectionChanged') classNames=tableClassNames as |t|}}
+    {{t.selectionColumn}}
+    {{t.filterableColumn propertyName='name' placeholder='Name' filterinformationupdated=(action df.onfilterfieldupdated)}}
+    {{t.column propertyName='surname' name='Surname'}}
+    {{t.column propertyName='position' name='Position'}}
+    {{#t.filterableColumn as |col|}}
+      {{#if col.header}}
+        {{team-filter-component teams=teams filterinformationupdated=(action df.onfilterfieldupdated)}}
+      {{/if}}
+      {{#if col.body}}
+        <img src="{{rootURL}}/assets/images/{{col.row.team}}.png" style="width:32px;height:32px;"> {{col.row.team}}
+      {{/if}}
+    {{/t.filterableColumn}}
+  {{/data-table}}
+{{/data-filterer}}
+<!-- // END-SNIPPET -->

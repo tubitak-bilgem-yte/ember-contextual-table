@@ -4,6 +4,7 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
+    snippetSearchPaths: ['tests']
     // Add options here
   });
 
@@ -13,6 +14,8 @@ module.exports = function(defaults) {
     This build file does *not* influence how the addon or the app using it
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
+
+  app.import('vendor/col-resizable/colResizable-1.6.min.js');
 
   return app.toTree();
 };

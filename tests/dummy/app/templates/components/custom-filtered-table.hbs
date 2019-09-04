@@ -1,0 +1,26 @@
+<!-- //BEGIN-SNIPPET custom-filtered-table -->
+{{#data-table data=filteredData selectionMode='multi' selectionChanged=(action 'selectionChanged') classNames=tableClassNames as |t|}}
+  {{t.selectionColumn}}
+  {{t.column propertyName='name' name='Name'}}
+  {{t.column propertyName='surname' name='Surname'}}
+  {{#t.column as |col|}}
+    {{#if col.header}}
+      {{#power-select
+        selected=selectedPosition
+        options=positions
+        onChange=(action (mut selectedPosition))
+        allowClear=true
+      as |position|
+      }}
+        {{position}}
+      {{/power-select}}
+    {{/if}}
+    {{#if col.body}}
+      {{col.row.position}}
+    {{/if}}
+  {{/t.column}}
+  {{#t.column defaultHeader=true propertyName='team' name="Team" as |col|}}
+    <img src="{{rootURL}}/assets/images/{{col.row.team}}.png" style="width:32px;height:32px;"> {{col.row.team}}
+  {{/t.column}}
+{{/data-table}}
+<!-- // END-SNIPPET -->

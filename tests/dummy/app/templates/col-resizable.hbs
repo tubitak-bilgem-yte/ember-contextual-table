@@ -1,0 +1,13 @@
+<h3>Resizable Columns</h3>
+<p>
+    As the simplicity is our motto, there must be a simplistic way of resizing the columns. We prefer
+    <a href="https://github.com/alvaro-prieto/colResizable">col-resizable</a> plugin for a resizable table.
+    As <a href="https://guides.emberjs.com/v2.11.0/components/the-component-lifecycle/#toc_integrating-with-third-party-libraries-with-code-didinsertelement-code">Ember Guide</a>
+    describes integration with a third party library, we only needed to handle <code>didInsertElement</code> hook.
+  <br>
+    But if you want to build resizable table from scratch, no one stops you.
+</p>
+{{#generic-demo-page name='Resizable Column Table' files='resizable-column-table.js,resizable-column-table.hbs'}}
+  {{resizable-column-table data=model}}
+{{/generic-demo-page}}
+<hr>

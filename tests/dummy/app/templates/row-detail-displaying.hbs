@@ -1,0 +1,28 @@
+<h3>Table with Row Detail</h3>
+<p>
+  {{navigation-menu-item text="Cell Customization" target="cell-customization"}} section already covered how you can
+  achieve editable tables of any kind you want. However; it might be the case that you do not want to edit the rows of
+  your table through editable columns; but you would like to display a <b>detail row</b> for a specific row to enable
+  editing or you would just like to display additional information related with the row that you think as detail (so
+  you simply omitted them in your column definitions).
+</p>
+<p>
+  In order to enable an easy-to-use detail row; <code>data-table</code> provides <code>extraRow</code> component via yielding.
+  You can use the extra row to display any information underneath the extra row. If you check out the example provided below;
+  you will see that code block within <code>t.extraRow</code> makes an if check so that; detail information is only displayed
+  for the row for which "Show Detail" button is clicked.
+</p>
+<p>
+  <code>extraRow</code> component yielded by <code>data-table</code>; yields similar information as <code>column</code> already
+  explained in previous sections. However; note that when using <code>t.column</code> you are declaring how the columns of a
+  row will look like; whereas with <code>t.extraRow</code> you are given a whole row in which you can put whatever you like
+  (any custom Ember component). In the example; content for detail row is placed within a <code>td</code> tag that spans
+  the whole row of the table. Yet again you can put custom content such that there are multiple columns even for the detail
+  row itself. Just like any feature provided by this addon; the developers has more than enough power to customize the detail
+  row with respect to their needs.
+</p>
+<p>
+  {{#generic-demo-page name='Table with Detail Row' files='table-with-detail-row.js,table-with-detail-row.hbs'}}
+    {{table-with-detail-row data=model}}
+  {{/generic-demo-page}}
+</p>

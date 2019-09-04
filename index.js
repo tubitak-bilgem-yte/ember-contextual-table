@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-contextual-table',
+  name: require('./package').name,
   isDevelopingAddon : function(){
     return true;
   },

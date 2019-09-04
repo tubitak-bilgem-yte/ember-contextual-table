@@ -1,0 +1,13 @@
+<!-- //BEGIN-SNIPPET filtered-and-sorted-table -->
+{{#data-filterer data=data as |df|}}
+  {{#data-sorter data=df.data as |ds|}}
+    {{#data-table data=ds.data selectionMode='multi' selectionChanged=(action 'selectionChanged') classNames=tableClassNames as |t|}}
+      {{t.selectionColumn}}
+      {{t.filterAndSortableColumn propertyName='name' name="Name" sortinformationupdated=(action ds.onsortfieldupdated) filterinformationupdated=(action df.onfilterfieldupdated) }}
+      {{t.filterAndSortableColumn propertyName='surname' name='Surname' sortinformationupdated=(action ds.onsortfieldupdated) filterinformationupdated=(action df.onfilterfieldupdated) }}
+      {{t.sortableColumn propertyName='birthYear' name='Birth Year' sortinformationupdated=(action ds.onsortfieldupdated)}}
+      {{t.column propertyName='team' name='Team'}}
+    {{/data-table}}
+  {{/data-sorter}}
+{{/data-filterer}}
+<!-- // END-SNIPPET -->

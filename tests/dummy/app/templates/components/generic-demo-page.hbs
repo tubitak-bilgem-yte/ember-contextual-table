@@ -1,0 +1,26 @@
+<h2>
+    {{#bs-button onClick=(action 'toggleCollapse') }}
+        {{#if collapsed}}
+            Display Code
+        {{else}}
+            Hide Code
+        {{/if}}
+    {{/bs-button}}
+</h2>
+
+{{#bs-collapse collapsed=collapsed}}
+    <div class="well">
+        {{#bs-tab as |bt|}}
+            {{#each filesToDisplay as |file|}}
+                {{#bt.pane title=file}}
+                  {{file}}
+                  {{#let (get-code-snippet file unindent=false) as |snippet|}}
+                    <pre class={{snippet.language}}>{{snippet.source}}</pre>
+                  {{/let}}
+                {{/bt.pane}}
+            {{/each}}
+        {{/bs-tab}}
+    </div>
+{{/bs-collapse}}
+
+{{yield}}

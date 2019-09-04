@@ -1,0 +1,53 @@
+<h3>Sorted Table</h3>
+<p>
+  Sorting is handled in the same way filtering is handled. <code>data-table</code> is wrapped within a <code>data-sorter</code>
+  and <code>data</code> attribute of table is assigned to the <code>data</code> property of json object yielded from <code>data-sorter</code>,
+  which is named <code>ds</code> in the example below. <code>sortableColumn</code> is used for a header that has the ability
+  to be clicked to perform sorting in ascending/descending and cancel the sorting for the property the column is assigned.
+</p>
+<p>
+  The example below has two sortable columns: "Name" & "Birth Year". Clicking on the header of the columns will result in
+  changing order of data. Note that sorting with respect to multiple columns is supported. In case a custom sorter is not
+  supported (as is the situation for the example below); a natural sorting of the values of that column is performed. Keep
+  tight to learn about doing an advanced sorting where you can take the whole responsibility to perform sorting.
+</p>
+{{#generic-demo-page name='Sorted Table' files='sorted-table.js,sorted-table.hbs'}}
+  {{sorted-table data=model}}
+{{/generic-demo-page}}
+<hr>
+<h3>Advanced Sorted Table</h3>
+<p>
+  Basic usage of <code>data-sorter</code> assumes you will have a clickable header that will cycle through ascending, descending,
+  and no sorting modes. The example below depicts an advanced sorting case where sorting with respect to position is performed
+  with respect to a custom header; where as for name; basic <code>sortableColumn</code> is preferred. Moreover, not only
+  the visual appearance of position sortable column header is changed; but also a custom sorting algorithm is used; where
+  ascending sorting of position yields "Forward", "Guard", and "Center"; which is unachievable with the basic sorting
+  <code>data-sorter</code> supports. Moreover, name sorting in this example is also changed from an alphabetical order to
+  the numerical ordering with respect to the length of the names.
+</p>
+<p>
+  Custom sortable column header in the example below is passed the <code>onsortfieldupdated</code> action from the yielded
+  json object, <code>ds</code>, of <code>data-sorter</code>. The custom sorting header is composed of a checkbox to determine
+  whether or not the sorting is enabled, and a select box to determine the order of sorting (ascending or descending). If
+  you check <code>sortable-position-header.js</code> file, you will notice that whenever the checkbox clicked or the select
+  box is changed <code>onsortinfoupdate</code> action is fired to trigger re-sorting of data via <code>data-sorter</code>.
+  If checkbox is disabled; then a value of <code>undefined</code> is thrown as sorting mode; in order to enable <code>data-sorter</code>
+  to remove "position" field from sorting process. If checkbox is enabled; then value of <code>true</code> (for ascending)
+  or false (for descending) is included in the action firing. Upon an action firing whether from the position column or the
+  name column, then custom sorter to perform advanced sorting we desire is triggered via <code>data-sorter</code>.
+</p>
+{{#generic-demo-page name='Advanced Sorted Table' files='advanced-sorted-table.js,advanced-sorted-table.hbs,sortable-position-header.js,sortable-position-header.hbs'}}
+  {{advanced-sorted-table data=model}}
+{{/generic-demo-page}}
+<p>
+  In order to switch to our custom sorter <code>data-sorter</code> is assigned a sorter; that is <code>customSorter</code>
+  existing within <code>advanced-sorted-table.js</code> file. If you check the signature of this function you will see that
+  the first parameter is the <code>data</code> to be sorted, and the second parameter is the list of <code>sortField</code>s.
+  A <code>sortField</code> is a json object with a <code>fieldName</code> to indicate the name of the field the sorting
+  is to be performed, and a <code>isAscending</code> flag to indicate the order of the sorting.
+</p>
+<p>
+  This example summarizes what you can achieve with built-in sorting features of ember-contextual-table. Yet again, you
+  can consider writing your own sorting mechanism as you like just like we did in <i>Custom Filtering</i> in the previous
+  section.
+</p>

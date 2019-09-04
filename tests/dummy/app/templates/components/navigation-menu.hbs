@@ -1,0 +1,4 @@
+{{#each navigationService.menu as |menuItem|}}
+  {{navigation-menu-item target=menuItem.target text=menuItem.text isActive=(eq menuItem.target navigationService.activeRoute)}}
+  <br>
+{{/each}}

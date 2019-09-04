@@ -1,0 +1,72 @@
+<h3>Filtered Table</h3>
+<p>
+  Just like pagination; filtering is implemented as an extension to the table; not within the table itself. The basic idea
+  is the same; wrap the table within a component that is able to perform some sort of filtering. The table offers <code>filterableColumn</code>
+  that is able to display an input field to get the filtering text from the user; where as <code>data-filterer</code> offers
+  a <i>diacritic insensitive contains</i> text search filtering capability with <code>onfilterfieldupdated</code> action
+  yielded. Note how passing filtered data from the filterer is to <code>data-table</code> as <code>data</code> is very similar
+  to that of <code>data-paginator</code> explained in {{navigation-menu-item text="Pagination" target="pagination"}}. The
+  key point that enabled filtering is the fact that yielded <code>onfilterfieldupdated</code> action of <code>data-filterer</code>
+  is passed as an action to <code>filterableColumn</code>'s <code>filterinformationupdated</code> property.
+</p>
+<p>
+  Filtering a column with default settings is as easy as it is in this example. Keep reading to learn about how to perform
+  an advanced filtering with customized filtering code and filtering column.
+</p>
+{{#generic-demo-page name='Filtered Table' files='filtered-table.js,filtered-table.hbs'}}
+  {{filtered-table data=model}}
+{{/generic-demo-page}}
+<hr>
+<h3>Advanced Filtered Table</h3>
+<p>
+  Basic usage of <code>data-filterer</code> assumes you will have an input field and perform filtering with text type filters.
+  The example below depicts an advanced filtering case where filtering with respect to team is performed with multi-selection
+  <a href="http://www.ember-power-select.com/">ember-power-select</a>. In such a case the filters will be an array of team
+  json objects; hence default text based filtering is of no use. What needs to be done is creating a custom <code>filterableColumn</code>
+  and a custom filter function to actually filter the data.
+</p>
+<p>
+  To start with the custom filtering column, please look at <code>advanced-filtered-table.hbs</code> source code. Body and
+  header parts of the column are differentiated with if checks as usual. Header filtering is delegated to a component named
+  <code>team-filter-component</code> that uses <code>ember-power-select</code> underneath. Whenever the selected items are
+  updated in the select component, <code>data-filterer</code> is notified about the change via yielded <code>onfilterfieldupdated</code>
+  action yielded from <code>data-filterer</code> (Please see <code>team-filter-component.js</code>' <code>teamSelectionChanged</code>
+  action to see how <code>data-filterer</code> is notified via firing of <code>filterinformationupdated</code> action).
+</p>
+{{#generic-demo-page name='Advanced Filtered Table' files='advanced-filtered-table.js,advanced-filtered-table.hbs,team-filter-component.js,team-filter-component.hbs,selected-team-component.js,selected-team-component.hbs'}}
+  {{advanced-filtered-table data=model}}
+{{/generic-demo-page}}
+<p>
+  Since, this is an advanced filtering that involves iterating over list of selected teams from the custom selection column's
+  header; a custom filtering function needs to be called. This is where <code>filterer</code> property of <code>data-filterer</code>
+  comes into play. As you can see in the example above, <code>customFilterer</code> field of <code>advanced-filtered-table</code>
+  component is assigned as the filtering function to the <code>data-filterer</code>. If you check the definition of <code>customFilterer</code>
+  function within <code>advanced-filtered-table.js</code> file, you will see that it has two parameters. The first one is
+  the <code>data</code> to be filtered; where as the second one is list of <code>filterField</code>s.
+
+  A filter field is just a json object, that is composed of <code>fieldName</code> and <code>filter</code> attributes. The
+  <code>fieldName</code> attribute is kind of an identifier to determine the column that filtering is applied to. Check
+  out once again <code>team-filter-component.js</code>' <code>teamSelectionChanged</code> action and see that <i>team</i>
+  is the first property of the action fired. For the filtering column applied to name column, the <code>fieldName</code>
+  is passed from the <code>advanced-filtered-table.hbs</code> as <code>propertyName</code> attribute of the column definition,
+  <i>name</i> in this example. <code>filter</code> attribute of a <code>filterField</code> object can be anything you want;
+  for the default filtering column applied to name, it is just the text typed into input field; whereas it is the list of
+  selected teams for the team column. Since it is you as the developer to design the custom header; you need to know what
+  type of a <code>filter</code> you are going to receive within custom filter function you are to write.
+</p>
+<hr>
+<h3>Custom Filtered Table</h3>
+<p>
+  Even if you did not like the way we implemented filtering, that is still OK; because there is nothing that can prevent
+  you from writing your custom filtering. Just do not use <code>data-filterer</code> we provided and implement it yourself
+  the way you like!
+</p>
+<p>
+  See the example below to see how we used <code>ember-contextual-table</code> once again to filter players in regards to
+  the position attribute. Instead of using <code>data-filterer</code>, we just defined a computed property named <code>filteredData</code>
+  within <code>custom-filtered-table.js</code> and passed it as <code>data</code> attribute of <code>data-table</code> and
+  filtering is simply achieved.
+</p>
+{{#generic-demo-page name='Custom Filtered Table' files='custom-filtered-table.js,custom-filtered-table.hbs'}}
+  {{custom-filtered-table data=model}}
+{{/generic-demo-page}}

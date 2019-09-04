@@ -1,0 +1,12 @@
+<!-- //BEGIN-SNIPPET row-click-table -->
+{{#data-table
+    data=data
+    classNames=tableClassNames
+    onRowSingleClick=(action 'onRowSingleClick')
+    onRowDoubleClick=(action 'onRowDoubleClick') as |t|}}
+    {{t.column propertyName='name' name='Name'}}
+    {{t.column propertyName='surname' name='Surname'}}
+    {{t.column propertyName='clickCount' name='Click Count'}}
+    {{t.column propertyName='doubleClickCount' name='Double Click Count'}}
+{{/data-table}}
+<!-- // END-SNIPPET -->

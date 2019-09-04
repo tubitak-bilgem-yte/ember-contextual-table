@@ -1,0 +1,11 @@
+<!-- //BEGIN-SNIPPET sorted-table -->
+{{#data-sorter data=data as |ds|}}
+  {{#data-table data=ds.data selectionMode='multi' selectionChanged=(action 'selectionChanged') classNames=tableClassNames as |t|}}
+    {{t.selectionColumn}}
+    {{t.sortableColumn propertyName='name' name="Name" sortinformationupdated=(action ds.onsortfieldupdated)}}
+    {{t.column propertyName='surname' name='Surname'}}
+    {{t.sortableColumn propertyName='birthYear' name='Birth Year' sortinformationupdated=(action ds.onsortfieldupdated)}}
+    {{t.column propertyName='team' name='Team'}}
+  {{/data-table}}
+{{/data-sorter}}
+<!-- // END-SNIPPET -->

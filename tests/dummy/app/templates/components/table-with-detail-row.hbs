@@ -1,0 +1,34 @@
+<!-- //BEGIN-SNIPPET table-with-detail-row -->
+{{#data-table data=data classNames=tableClassNames as |t|}}
+  {{t.column propertyName='name' name='Name'}}
+  {{t.column propertyName='surname' name='Surname'}}
+  {{t.column propertyName='position' name='Position'}}
+  {{t.column propertyName='team' name='Team'}}
+  {{#t.column as |col|}}
+    {{#if col.body}}
+      <button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick={{action 'toggleDetail' col.rowIndex}} >
+        {{#if (eq col.rowIndex rowIndexToShowDetail)}}
+          Hide Detail
+        {{else}}
+          Show Detail
+        {{/if}}
+      </button>
+    {{/if}}
+  {{/t.column}}
+  {{#t.extraRow as |er|}}
+    {{#if (eq er.rowIndex rowIndexToShowDetail)}}
+      <td colspan="5">
+        Birth Year: {{er.row.birthYear}}<br>
+        Nick: {{input value=(readonly er.row.nick) key-up=(action 'onnickupdate')}}<br>
+        Nationality: {{er.row.nationality}}<br>
+        <button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick={{action 'discardChanges'}} >
+          Discard Changes
+        </button>
+        <button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" onclick={{action 'saveChanges'}} >
+          Save Changes
+        </button>
+      </td>
+    {{/if}}
+  {{/t.extraRow}}
+{{/data-table}}
+<!-- // END-SNIPPET -->

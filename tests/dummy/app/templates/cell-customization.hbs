@@ -1,0 +1,64 @@
+<h3>Editable Table</h3>
+<p>
+  The very first customization that is expected from every table/grid is of course a support to make the cells editable.
+  So what does ember-contextual-table offer to provide some sort of editable cells? The answer is simply <b>NOTHING</b>!
+</p>
+<p>
+  This might seem odd at first; but we, as developers of this addon, are proud to say that it is the responsibility of the
+  users of this addon to handle editing of the cells. What this table only do is of course to <b>yield</b> relevant information
+  as being <i>contextual</i>.
+</p>
+<p>
+  The example below displays an editable input cell to change the nick names of NBA 2017 All Star starters. In order to
+  customize a table cell; the first thing to do is to declare a column in block form use the column information <i>yielded</i>.
+  In this example we named the yielded json object as <code>col</code> and used <code>row</code> field of this object to pass
+  to the action handler named <code>onnickupdate</code>. <code>row</code> is the actual item that resides in the relevant
+  index of <code>data</code> array that is passed to <code>data-table</code> in the first place. Wait for some more time
+  to learn what resides in yielded <code>col</code> json object or jump into
+  {{navigation-menu-item text="API" target="api-reference"}} and satisfy your hunger :)
+</p>
+{{#generic-demo-page name='Editable Table' files='editable-table.js,editable-table.hbs'}}
+  {{editable-table data=model}}
+{{/generic-demo-page}}
+<p>
+  Note that, the custom column definition given in the example contains a property named <code>defaultHeader</code> assigned
+  to <code>true</code>. Keep scrolling down to learn what it is used for.
+</p>
+<hr>
+<h3>Custom Table</h3>
+<p>
+  Example below demonstrates a more customized table; where there is a customized selection column (with button inside),
+  a column demonstrating a calculated field (age); and a column illustrating the row index. Now let's dig into details to
+  understand how the customization is achieved.
+</p>
+<p>
+  In addition to the default selection field; one can choose to create his own selection column. This is what the second
+  column of the example table below is about. <code>selectionColumn</code> used in block form below yields a json object
+  named <code>col</code>. The properties named <code>header</code> and <code>body</code> of <code>col</code> object are used
+  to differentiate between doing rendering for header and body parts of the corresponding column via if checks residing in
+  block form <code>selectionColumn</code> definition. Moreover, <code>change</code> action and <code>isRowSelected</code>
+  fields of yielded <code>col</code> objects are also used to make the button within each table cell to update selection
+  state of corresponding row. Look how the original selection column and the custom column work together in harmony to reflect
+  changes to each other appropriately. You can once again check {{navigation-menu-item text="API" target="api-reference"}}
+  to learn more about what is yielded from <code>selectionColumn</code>.
+</p>
+{{#generic-demo-page name='Custom Table' files='custom-table.js,custom-table.hbs'}}
+  {{custom-table data=model}}
+{{/generic-demo-page}}
+<p>
+  Header of the team column of the example above looks different than the others; and if you look at the code of the template
+  file you can see that it is applied a custom header as well as a custom body just like the selection column explained above.
+  Only this time, the customization is performed within block form <code>column</code> definition. Once; again <code>header</code>
+  and <code>body</code> properties of yielded <code>col</code> object are used to differentiate between rendering within
+  header and body parts of the column. Note that there is nothing to prevent you from using your own components within
+  header, body, and even footer (yet to come in next section) sections of your customized table column declarations. We
+  should have opted to make the table rendering a separate component of its own instead of declaring it within the table
+  definition with html img tag.
+</p>
+<p>
+  Row index column of the example is once again declared as block form; however this time instead of differentiating between
+  header and body parts via if checks; we preferred to use <code>defaultHeader</code> property of column as true and use
+  <code>name</code> property to appear as the default header of the column. <code>rowIndex</code> property of the yielded
+  <code>col</code> object gives users the chance to deal with the row index if they wish to. We just used it as the cell
+  content; use your imagination to do something more useful with it :)
+</p>

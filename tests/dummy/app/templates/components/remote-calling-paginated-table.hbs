@@ -1,0 +1,12 @@
+<!-- //BEGIN-SNIPPET remote-calling-paginated-table -->
+{{#data-table data=data selectionMode='multi' selectionChanged=(action 'selectionChanged') classNames=tableClassNames as |t|}}
+  {{t.selectionColumn}}
+  {{#t.column defaultHeader=true name='Avatar' as |col|}}
+    <img style="width:32px;height:32px;border-radius: 50%;" src={{col.row.actor.avatar_url}}>
+  {{/t.column}}
+  {{t.column propertyName='actor.display_login' name='User Name'}}
+  {{t.column propertyName='created_at' name="Creation Time"}}
+  {{t.column propertyName='type' name='Action Type'}}
+{{/data-table}}
+{{pager-component next=(action 'nextPageRequested') previous=(action 'prevPageRequested') currentPage=currentPage nextDisabled=nextDisabled}}
+<!-- // END-SNIPPET -->
