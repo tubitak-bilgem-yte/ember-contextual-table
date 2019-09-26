@@ -48,7 +48,7 @@ export default Component.extend({
     let currentPage = this.get('currentPage')-1;
 
     let start= currentPage * pageSize;
-    let end = (currentPage +1) * pageSize;
+    let end = (currentPage + 1) * pageSize;
     return data.slice(start, end);
   }),
 
