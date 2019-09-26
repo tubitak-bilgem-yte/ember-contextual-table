@@ -1,5 +1,16 @@
 <nav>
   <ul class="pager">
+    {{#if first}}
+      <li class={{previousButtonClass}}>
+        <a href="#" onclick={{action "first"}}>
+          {{#if hasBlock}}
+            {{yield (hash first=true)}}
+          {{else}}
+            {{firstLabel}}
+          {{/if}}
+        </a>
+      </li>
+    {{/if}}
     <li class={{previousButtonClass}}>
       <a href="#" onclick={{action "previous"}}>
         {{#if hasBlock}}
@@ -10,7 +21,15 @@
       </a>
     </li>
     {{#if currentPage}}
-      <li class="disabled"><a href="javascript:void(0)">{{currentPage}}</a></li>
+      <li class="disabled">
+        <a href="javascript:void(0)">
+          {{#if pagesTotal}}
+            {{currentPage}}/{{pagesTotal}}
+          {{else}}
+            {{currentPage}}
+          {{/if}}
+        </a>
+      </li>
     {{/if}}
     <li class={{nextButtonClass}}>
       <a href="#" onclick={{action "next"}}>
@@ -21,5 +40,16 @@
         {{/if}}
       </a>
     </li>
+    {{#if last}}
+      <li class={{nextButtonClass}}>
+        <a href="#" onclick={{action "last"}}>
+          {{#if hasBlock}}
+            {{yield (hash last=true)}}
+          {{else}}
+            {{lastLabel}}
+          {{/if}}
+        </a>
+      </li>
+    {{/if}}
   </ul>
 </nav>

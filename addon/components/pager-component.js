@@ -18,8 +18,10 @@ export default Component.extend({
     return (this.get('nextDisabled') ? 'disabled' : '') ;
   }),
 
-  previousLabel: '<<',
-  nextLabel: '>>',
+  firstLabel: '<<',
+  lastLabel: '>>',
+  previousLabel: '<',
+  nextLabel: '>',
 
   actions:{
     previous:function(e){
@@ -37,6 +39,24 @@ export default Component.extend({
       }
 
       (this.get('next')|| function(){})();
+    },
+
+    first(e){
+      e.preventDefault();
+      if (this.get('previousDisabled')) {
+        return;
+      }
+
+      (this.get('first')|| function(){})();
+    },
+
+    last(e){
+      e.preventDefault();
+      if (this.get('nextDisabled')) {
+        return;
+      }
+
+      (this.get('last')|| function(){})();
     }
   }
 });
