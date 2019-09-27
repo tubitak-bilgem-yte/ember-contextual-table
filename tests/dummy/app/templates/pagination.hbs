@@ -33,6 +33,13 @@
   <code>previous</code> are actions to trigger page change and updating of data passed to <code>data-table</code> and
   <code>hasNext</code> is a boolean to determine whether or not there are more data to slice.
 </p>
+<h3>Go To First Last Page</h3>
+<p>
+  If you pass <code>first</code> action or <code>last</code> action to <code>pager-component</code> go to first page and go to last page options will be enabled.
+</p>
+{{#generic-demo-page name='Go To First / Last Page Paginated Table' files='first-last-paginated-table.js,first-last-paginated-table.hbs'}}
+  {{first-last-paginated-table data=model}}
+{{/generic-demo-page}}
 <p>
   What is good about the above example is that it shows you how much power as a developer you have to do whatever you like
   about pagination with the table. You did not like the <code>pager-component</code> that is provided; well that is not

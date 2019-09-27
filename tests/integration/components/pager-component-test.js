@@ -22,14 +22,14 @@ test('renders in basic form and responds to actions', function(assert) {
     {{pager-component next=(action 'nextPageRequested') previous=(action 'previousPageRequested') currentPage=currentPage previousDisabled=previousDisabled nextDisabled=nextDisabled}}
   `);
 
-  assert.equal(this.$('a:eq(0)').text().trim(), "<<");
-  assert.equal(this.$('a:eq(1)').text().trim(), ">>");
+  assert.equal(this.$('a:eq(0)').text().trim(), "<");
+  assert.equal(this.$('a:eq(1)').text().trim(), ">");
 
   this.set('currentPage',28);
 
-  assert.equal(this.$('a:eq(0)').text().trim(), "<<");
+  assert.equal(this.$('a:eq(0)').text().trim(), "<");
   assert.equal(this.$('a:eq(1)').text().trim(), "28");
-  assert.equal(this.$('a:eq(2)').text().trim(), ">>");
+  assert.equal(this.$('a:eq(2)').text().trim(), ">");
 
   this.$('a:eq(0)').click();
   this.$('a:eq(0)').click();

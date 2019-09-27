@@ -1,0 +1,15 @@
+<!-- //BEGIN-SNIPPET first-last-paginated-table -->
+{{#data-paginator data=data pageSize=4 as |p|}}
+    {{#data-table data=p.data selectionMode='multi' selectionChanged=(action 'selectionChanged') classNames=tableClassNames as |t|}}
+      {{t.selectionColumn}}
+      {{t.column propertyName='name' name='Name'}}
+      {{t.column propertyName='surname' name='Surname'}}
+      {{t.column propertyName='position' name='Position'}}
+      {{t.column propertyName='team' name='Team'}}
+    {{/data-table}}
+    {{pager-component next=p.next previous=p.previous currentPage=p.currentPage
+      nextDisabled=(if p.hasNext false true)
+      first=p.first
+      last=p.last}}
+{{/data-paginator}}
+<!-- // END-SNIPPET -->
