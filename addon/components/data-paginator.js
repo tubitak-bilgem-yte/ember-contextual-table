@@ -1,16 +1,28 @@
 import { alias } from '@ember/object/computed';
 import { computed, observer } from '@ember/object';
+import { reads } from '@ember/object/computed';
 import Component from '@ember/component';
 import layout from '../templates/data-paginator';
 
 export default Component.extend({
   layout,
+  firstPageNumber: 1,
   currentPage:1,
   pageSize:10,
   classNames:['contextual-data-paginator'],
 
-  hasNext:computed('paginatedData.[]', 'pageSize', function(){
+  lastPageNumber: computed('data.[]', 'pageSize', function(){
+    return Math.ceil((this.get('data.length') || 0) / this.get('pageSize') );
+  }),
+
+  pagesTotal: reads('lastPageNumber'),
+
+  hasNext: computed('paginatedData.[]', 'pageSize', function(){
     return this.get('paginatedData').length === this.get('pageSize');
+  }),
+
+  hasPrevious: computed('currentPage', 'firstPageNumber', function(){
+    return this.get('currentPage') > this.get('firstPageNumber');
   }),
 
   offset:computed('pageSize','currentPage', function(){
@@ -36,7 +48,7 @@ export default Component.extend({
     let currentPage = this.get('currentPage')-1;
 
     let start= currentPage * pageSize;
-    let end = (currentPage +1) * pageSize;
+    let end = (currentPage + 1) * pageSize;
     return data.slice(start, end);
   }),
 
@@ -50,6 +62,14 @@ export default Component.extend({
   },
 
   actions:{
+    first: function(){
+      this.set('currentPage', this.get('firstPageNumber'));
+      this.fireDataRequested();
+    },
+    last: function(){
+      this.set('currentPage', this.get('lastPageNumber'));
+      this.fireDataRequested();
+    },
     previous:function(){
       this.decrementProperty('currentPage');
       this.fireDataRequested();
