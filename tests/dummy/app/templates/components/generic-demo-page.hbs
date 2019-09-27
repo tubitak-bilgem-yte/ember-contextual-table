@@ -13,7 +13,6 @@
     {{#bs-tab as |bt|}}
       {{#each filesToDisplay as |file|}}
         {{#bt.pane title=file}}
-          {{file}}
           {{#let (get-code-snippet file unindent=false) as |snippet|}}
             <CodeBlock @language="javascript" >{{snippet.source}}</CodeBlock>
           {{/let}}
