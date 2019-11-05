@@ -36,7 +36,6 @@
           filterAndSortableColumn=(component "dt-column-cell" row=wrappedRow.row rowIndex=index)
           selectionColumn=(component "dt-selection-column" row=wrappedRow.row rowIndex=index isRowSelected=wrappedRow.isSelected rowSelected=(action "selected" wrappedRow) rowDeselected=(action "deselected" wrappedRow))
           sortableColumn =(component "dt-column-cell" row=wrappedRow.row rowIndex=index)
-          extraRow=(component "empty-component")
           row=wrappedRow.row
           rowIndex=index
         )
@@ -44,11 +43,6 @@
     </tr>
     {{yield
       (hash
-        column=(component "empty-component")
-        filterableColumn=(component "empty-component")
-        filterAndSortableColumn=(component "empty-component")
-        selectionColumn=(component "empty-component")
-        sortableColumn=(component "empty-component")
         extraRow=(component "row-component" row=wrappedRow.row rowIndex=index isRowSelected=wrappedRow.isSelected)
         rowIndex=index
         row=wrappedRow.row

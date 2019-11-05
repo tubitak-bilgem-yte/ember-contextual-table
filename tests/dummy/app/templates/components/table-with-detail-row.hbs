@@ -15,8 +15,8 @@
       </button>
     {{/if}}
   {{/t.column}}
-  {{#t.extraRow as |er|}}
-    {{#if (eq er.rowIndex rowIndexToShowDetail)}}
+  {{#if (eq t.rowIndex rowIndexToShowDetail)}}
+    {{#t.extraRow as |er|}}
       <td colspan="5">
         Birth Year: {{er.row.birthYear}}<br>
         Nick: {{input value=(readonly er.row.nick) key-up=(action 'onnickupdate')}}<br>
@@ -28,7 +28,7 @@
           Save Changes
         </button>
       </td>
-    {{/if}}
-  {{/t.extraRow}}
+    {{/t.extraRow}}
+  {{/if}}
 {{/data-table}}
 <!-- // END-SNIPPET -->
