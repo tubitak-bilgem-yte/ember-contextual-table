@@ -6,7 +6,7 @@
             is Selected?
         {{/if}}
         {{#if col.body}}
-            <button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
+            <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
                 {{action col.change (if col.isRowSelected false true)}} value={{col.isRowSelected}}>
                 {{if col.isRowSelected 'Selected' 'Not Selected'}}
             </button>
@@ -19,7 +19,7 @@
         <span style='text-decoration: underline overline; color:darkred'>Team</span>
       {{/if}}
       {{#if col.body}}
-        <img src="{{rootURL}}/assets/images/{{col.row.team}}.png" style="width:32px;height:32px;">
+        <img src="{{rootURL}}/assets/images/{{col.row.team}}.png" alt="Team {{col.row.team}}" style="width:32px;height:32px;">
       {{/if}}
     {{/t.column}}
     {{#t.column name='Row Index' defaultHeader=true as |col|}}

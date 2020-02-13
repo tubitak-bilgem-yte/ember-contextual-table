@@ -5,12 +5,12 @@ aa
 <div class="content col-md-10 col-md-offset-1">
   {{outlet}}
   {{#unless navigationService.prevHidden}}
-    <button class="prev-button btn btn-default" onclick={{action "buttonClicked" navigationService.prevTarget}}>
+    <button type="button" class="prev-button btn btn-default" onclick={{action "buttonClicked" navigationService.prevTarget}}>
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> {{navigationService.prevText}}
     </button>
   {{/unless}}
   {{#unless navigationService.nextHidden}}
-    <button class="next-button btn btn-default" onclick={{action "buttonClicked" navigationService.nextTarget}}>
+    <button type="button" class="next-button btn btn-default" onclick={{action "buttonClicked" navigationService.nextTarget}}>
       {{navigationService.nextText}} <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     </button>
   {{/unless}}

@@ -2,7 +2,7 @@
 {{#data-table data=data selectionMode='multi' selectionChanged=(action 'selectionChanged') classNames=tableClassNames as |t|}}
   {{t.selectionColumn}}
   {{#t.column defaultHeader=true name='Avatar' as |col|}}
-    <img style="width:32px;height:32px;border-radius: 50%;" src={{col.row.actor.avatar_url}}>
+    <img style="width:32px;height:32px;border-radius: 50%;" alt="avatar" src={{col.row.actor.avatar_url}}>
   {{/t.column}}
   {{t.column propertyName='actor.display_login' name='User Name'}}
   {{t.column propertyName='created_at' name="Creation Time"}}

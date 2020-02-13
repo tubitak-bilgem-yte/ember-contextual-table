@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  extends: 'recommended',
+  extends: 'octane',
   rules: {
     'attribute-indentation': false,
     'block-indentation': false,
@@ -18,6 +18,9 @@ module.exports = {
     'quotes' : undefined,
     'self-closing-void-elements': false,
     'style-concatenation': false,
-    'table-groups': false
+    'table-groups': false,
+    'no-curly-component-invocation': false,
+    'no-implicit-this': false,
+    'no-action': false
   }
 };

@@ -9,7 +9,7 @@
     onChange=(action 'teamSelectionChanged')
   as |team|
   }}
-    <img src="{{rootURL}}/assets/images/{{team.shortName}}.png" style="width:32px;height:32px;"> {{team.name}}
+    <img src="{{rootURL}}/assets/images/{{team.shortName}}.png" alt="Team {{team.shortName}}"  style="width:32px;height:32px;"> {{team.name}}
   {{/power-select-multiple}}
 </div>
 <!-- // END-SNIPPET -->

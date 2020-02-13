@@ -10,7 +10,7 @@
         {{team-filter-component teams=teams filterinformationupdated=(action df.onfilterfieldupdated)}}
       {{/if}}
       {{#if col.body}}
-        <img src="{{rootURL}}/assets/images/{{col.row.team}}.png" style="width:32px;height:32px;"> {{col.row.team}}
+        <img src="{{rootURL}}/assets/images/{{col.row.team}}.png" alt="Team {{col.row.team}}" style="width:32px;height:32px;"> {{col.row.team}}
       {{/if}}
     {{/t.filterableColumn}}
   {{/data-table}}
