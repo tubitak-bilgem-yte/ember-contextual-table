@@ -27,7 +27,7 @@ function teamFilterer(item, filterField) {
 }
 
 export default Component.extend({
-  tableClassNames:'table table-striped table-bordered table-hover table-responsive table-condensed',
+  tableClassNames:'table table-striped table-bordered table-hover yte-table-responsive table-condensed',
   teams: data.teams,
 
   customFilterer(data, filterFields) {

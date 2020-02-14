@@ -9,7 +9,7 @@ export default Component.extend({
   currentPage:1,
   pageSize:5,
   nextDisabled:gt('currentPage', 5),
-  tableClassNames:'table table-striped table-bordered table-hover table-responsive table-condensed',
+  tableClassNames:'table table-striped table-bordered table-hover yte-table-responsive table-condensed',
   data: A(),
 
   didInsertElement() {

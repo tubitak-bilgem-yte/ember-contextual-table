@@ -7,7 +7,7 @@ import { get, computed } from '@ember/object';
 const POSITIONS = ['Guard', 'Forward', 'Center'];
 
 export default Component.extend({
-  tableClassNames:'table table-striped table-bordered table-hover table-responsive table-condensed',
+  tableClassNames:'table table-striped table-bordered table-hover yte-table-responsive table-condensed',
   positions: POSITIONS,
 
   filteredData: computed('data', 'selectedPosition', function () {

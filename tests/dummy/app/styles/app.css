@@ -1,5 +1,6 @@
 .ember-application {
   font-family: sans-serif;
+  font-size: 14px;
 }
 
 h3 {
@@ -57,8 +58,11 @@ h3 {
 
 .content {
   padding-left: 200px;
-  padding-bottom: 20px;
+  padding-right: 15px;
+  padding-bottom: 50px;
   margin-top: 100px;
+  margin-left: 150px;
+  width: 84%;
 }
 
 .prev-button {
@@ -81,3 +85,101 @@ h3 {
   color: #ffffff !important;
 }
 
+.yte-table-responsive {
+  min-height: .01%;
+  overflow-x: auto;
+}
+
+.code-button {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  font-size: 14px;
+}
+
+.code-button.active, .code-button:active, .code-button:hover, .open>.dropdown-toggle.code-button {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.code-button.focus, .code-button:focus {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+
+.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+  padding: 5px;
+}
+
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glyphicon, address {
+  font-style: normal;
+}
+.glyphicon-chevron-left:before {
+  content: "\e079";
+}
+
+.glyphicon-chevron-right:before {
+  content: "\e080";
+}
+
+.yte-button {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  font-size: 14px;
+}
+
+.yte-button.active.focus, .yte-button.active:focus, .yte-button.active:hover, .yte-button:active.focus, .yte-button:active:focus, .yte-button:active:hover {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+
+.yte-button.active, .yte-button:active, .yte-button:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.pager {
+  padding-left: 0;
+  margin: 20px 0;
+  text-align: center;
+  list-style: none;
+}
+
+.pager .disabled>a, .pager .disabled>a:focus, .pager .disabled>a:hover, .pager .disabled>span {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+}
+
+.pager li>a:focus, .pager li>a:hover {
+  text-decoration: none;
+  background-color: #eee;
+}
+
+.pager li>a, .pager li>span {
+  display: inline-block;
+  padding: 5px 14px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+}
+
+.pager li {
+  display: inline;
+}

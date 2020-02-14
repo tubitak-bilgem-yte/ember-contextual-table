@@ -15,7 +15,7 @@ function positionComparator(a, b) {
 
 
 export default Component.extend({
-  tableClassNames:'table table-striped table-bordered table-hover table-responsive table-condensed',
+  tableClassNames:'table table-striped table-bordered table-hover yte-table-responsive table-condensed',
 
   customSorter(data, sortFields) {
     if (isEmpty(sortFields)) {

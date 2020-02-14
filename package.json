@@ -24,7 +24,7 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "7.13.0",
+    "ember-cli-babel": "7.18.0",
     "ember-cli-htmlbars": "4.2.0"
   },
   "devDependencies": {
@@ -33,10 +33,10 @@
     "@glimmer/component": "1.0.0",
     "@glimmer/tracking": "1.0.0",
     "babel-eslint": "10.0.3",
-    "bootstrap": "3.3.7",
+    "bootstrap": "4.4.1",
     "broccoli-asset-rev": "3.0.0",
     "ember-auto-import": "1.5.3",
-    "ember-bootstrap": "1.2.2",
+    "ember-bootstrap": "3.1.1",
     "ember-cli": "3.15.0",
     "ember-cli-dependency-checker": "3.2.0",
     "ember-cli-eslint": "5.1.0",
@@ -47,7 +47,7 @@
     "ember-code-snippet": "3.0.0",
     "ember-export-application-global": "2.0.1",
     "ember-load-initializers": "2.1.1",
-    "ember-math-helpers": "2.13.0",
+    "ember-math-helpers": "2.10.0",
     "ember-maybe-import-regenerator": "0.1.6",
     "ember-power-select": "3.0.6",
     "ember-prism": "0.5.0",
