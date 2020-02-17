@@ -3,7 +3,7 @@
     {{#if first}}
       <li class={{previousButtonClass}}>
         <a href="#" onclick={{action "first"}}>
-          {{#if hasBlock}}
+          {{#if (has-block)}}
             {{yield (hash first=true)}}
           {{else}}
             {{firstLabel}}
@@ -13,7 +13,7 @@
     {{/if}}
     <li class={{previousButtonClass}}>
       <a href="#" onclick={{action "previous"}}>
-        {{#if hasBlock}}
+        {{#if (has-block)}}
           {{yield (hash previous=true)}}
         {{else}}
           {{previousLabel}}
@@ -33,7 +33,7 @@
     {{/if}}
     <li class={{nextButtonClass}}>
       <a href="#" onclick={{action "next"}}>
-        {{#if hasBlock}}
+        {{#if (has-block)}}
           {{yield (hash next=true)}}
         {{else}}
           {{nextLabel}}
@@ -43,7 +43,7 @@
     {{#if last}}
       <li class={{nextButtonClass}}>
         <a href="#" onclick={{action "last"}}>
-          {{#if hasBlock}}
+          {{#if (has-block)}}
             {{yield (hash last=true)}}
           {{else}}
             {{lastLabel}}
