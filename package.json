@@ -1,6 +1,6 @@
 {
   "name": "ember-contextual-table",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "Ember Table as a Contextual Component.",
   "keywords": [
     "ember-addon",

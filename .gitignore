@@ -2,6 +2,7 @@
 
 # ide preferences
 /.idea
+ember-contextual-table.iml
 
 # compiled output
 /dist/
